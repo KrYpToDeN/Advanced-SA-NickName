@@ -2,10 +2,7 @@
 
 #if (defined(WIN32) || defined(_WIN32)) && defined(_MSC_VER) // windows
 
-#include					"windows.h"
-
-#define SAMP_FILE_NAME1		"samp-server.exe"
-#define SAMP_FILE_NAME2		"samp-server.exe"
+#include					<windows.h>
 
 #define MEMORY_START		0x401000
 
@@ -21,19 +18,18 @@ char Adresses[90] =
 
 char samp_version_name[15] = "SA-MP Server: ";
 
-
 #else // Linux
 
 #include					<sys/mman.h>
+#include					<unistd.h>
 
 #define MEMORY_START		0x804B430
 
 #define DWORD				unsigned long
 #define BYTE				unsigned char
 
-#define SAMP_FILE_NAME1		"samp03svr"
-#define SAMP_FILE_NAME2		"sampsvr"
-
+#define PAGESIZE			4096
+#define MAX_PATH			260
 
 char Adresses[117] =
 {
