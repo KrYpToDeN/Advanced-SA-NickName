@@ -38,10 +38,10 @@ int checkNickname(char *name)
 			*name >= 'A' && *name <= 'Z' ||
 			*name >= 'a' && *name <= 'z' ||
 
-			*name >= 'Ã€' && *name <= 'ÃŸ' ||
-			*name >= 'Ã ' && *name <= 'Ã¿' ||
+			*name >= 'À' && *name <= 'ß' ||
+			*name >= 'à' && *name <= 'ÿ' ||
 
-			*name == 'Â¨' || *name == 'Â¸' ||
+			*name == '¨' || *name == '¸' ||
 
 			*name == ']' ||
 			*name == '[' ||
@@ -64,18 +64,16 @@ int checkNickname(char *name)
 
 int GetFileSize()
 {
+	/*char szBuffer[256];
+
+	GetModuleFileName(NULL, szBuffer, 256);*/
+
 	FILE * samp_server_exe;
 
-	char fPath[MAX_PATH];
+	samp_server_exe = fopen(SAMP_FILE_NAME1, "rb");
+	if (!samp_server_exe)
+		samp_server_exe = fopen(SAMP_FILE_NAME2, "rb");
 
-#ifdef WIN32
-	GetModuleFileName(NULL, fPath, sizeof(fPath));
-	fopen_s(&samp_server_exe, fPath, "rb");
-#else
-	int bytes = readlink("/proc/self/exe", fPath, sizeof(fPath) - 1);
-	fPath[bytes] = '\0';
-	samp_server_exe = fopen(fPath, "rb");
-#endif
 
 	int file_size = 0;
 	if (samp_server_exe)
@@ -85,6 +83,7 @@ int GetFileSize()
 		fclose(samp_server_exe);
 	}
 	return file_size;
+
 }
 
 bool CheckMemmory(char*check, char*mas, int mas_length)
