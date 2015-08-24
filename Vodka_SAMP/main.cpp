@@ -11,35 +11,15 @@ PLUGIN_EXPORT bool PLUGIN_CALL Load(void **ppData)
 	logprintf = (logprintf_t)ppData[PLUGIN_DATA_LOGPRINTF];
 
 	logprintf("\n\n\t---------------------------------------------------------------");
-	logprintf("\t[VODKA_SA:MP]: Плагин v2.5 by [KrYpToDeN] & [EC]Zero");
+	logprintf("\t[VODKA_SA:MP]: Плагин v2.0 by [KrYpToDeN] & [EC]Zero");
 	logprintf("\t[VODKA_SA:MP]: Плагин поддержки русских никнеймов загружается..");
-
-	if (ini_parse("scriptfiles//Vodka_SAMP.ini", Ini_Handler, &Config) < 0) 
-	{
-		logprintf("\n\t[VODKA_SA:MP]: Файл настроек отсутствует | Создаю по адресу \"scriptfiles//Vodka_SAMP.ini\"\n");
-		FILE *SettingFile;
-		SettingFile = fopen("scriptfiles//Vodka_SAMP.ini", "wt");
-
-		if (!SettingFile)
-		{
-			logprintf("\n\tПроизошла непредвиденная ошибка создания файла настроек. Возможно, отсутствует каталог \"scriptfiles\".\n\n\tСворачиваемся..");
-			ShowCopiratesInfo();
-			return false;
-		}
-
-		Config.EnginePlugin = 1;
-		Config.MixSymbols = 1;
-
-		fwrite("[Vodka_SAMP_Settings]\nEnginePlugin = 1\t\t;Вкл.плагин - 1, Откл.плагин - 0\nAllowMixSymbols = 1\t\t;Вкл.смешивание языков - 1, Откл.смешивание языков - 0", 1, strlen("[Vodka_SAMP_Settings]\nEnginePlugin = 1\t\t;Вкл.плагин - 1, Откл.плагин - 0\nAllowMixSymbols = 1\t\t;Вкл.смешивание языков - 1, Откл.смешивание языков - 0"), SettingFile);
-		fclose(SettingFile);
-	}
 
 	int file_size = GetFileSize();
 
 	if (!Unlock((void*)MEMORY_START, file_size))
 	{
 		logprintf("\n\tОШИБКА: Ошибка инициализации.\n\tОбратитесь в скайп kryptoden\n\n\tСворачиваемся..");
-		ShowCopiratesInfo();
+		logprintf("\t---------------------------------------------------------------\n\n");
 		return false;
 	}
 
@@ -74,14 +54,6 @@ PLUGIN_EXPORT bool PLUGIN_CALL Load(void **ppData)
 		return false;
 	}
 
-
-	if (!Config.EnginePlugin)
-	{
-		logprintf("\n\tПлагин отключён. Посмотрите файл настроек Vodka_SAMP.ini\n\n\tСворачиваемся..");
-		ShowCopiratesInfo();
-		return false;
-	}
-
 	JUMP_DATA* checkFunct = (JUMP_DATA*)function_adress;
 
 	if (checkFunct != NULL)
@@ -106,8 +78,13 @@ PLUGIN_EXPORT bool PLUGIN_CALL Load(void **ppData)
 			}
 		}
 #endif
-		ShowCopiratesInfo();
 	}
+
+	logprintf("\t[VODKA_SA:MP]: Ваши собутильники:[EC]Zero & [KrYpToDeN]!");
+	logprintf("\t\t[EC]Zero\t\t| Skype: mactep_3epo");
+	logprintf("\t\t[KrYpToDeN]\t\t| Skype: kryptoden");
+	logprintf("\t[VODKA_SA:MP]: Приятного распития!");
+	logprintf("\t---------------------------------------------------------------\n\n");
 	return true;
 }
 
@@ -136,7 +113,6 @@ PLUGIN_EXPORT int PLUGIN_CALL AmxLoad(AMX *amx)
 {
 	return amx_Register(amx, PluginNatives, -1);
 }
-
 PLUGIN_EXPORT int PLUGIN_CALL AmxUnload(AMX *amx)
 {
 	return AMX_ERR_NONE;

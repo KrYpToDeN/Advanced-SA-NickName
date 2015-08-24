@@ -11,16 +11,9 @@ struct JUMP_DATA
 
 #pragma pack(pop)
 
-typedef struct Settings
-{
-	int EnginePlugin;
-	int MixSymbols;
-};
-Settings Config;
-
 size_t CalcDisp(void* lpFirst, void* lpSecond)
 {
-	return reinterpret_cast<char*>(lpSecond) - (reinterpret_cast<char*>(lpFirst) + 5);
+	return reinterpret_cast<char*>(lpSecond)-(reinterpret_cast<char*>(lpFirst)+5);
 }
 
 bool Unlock(void *address, int len) // by 009, edited by Roman1us
@@ -45,10 +38,10 @@ int checkNickname(char *name)
 			*name >= 'A' && *name <= 'Z' ||
 			*name >= 'a' && *name <= 'z' ||
 
-			*name >= 'А' && *name <= 'Я' ||
-			*name >= 'а' && *name <= 'я' ||
+			*name >= 'ГЂ' && *name <= 'Гџ' ||
+			*name >= 'Г ' && *name <= 'Гї' ||
 
-			*name == 'Ё' || *name == 'ё' ||
+			*name == 'ВЁ' || *name == 'Вё' ||
 
 			*name == ']' ||
 			*name == '[' ||
@@ -92,6 +85,7 @@ int GetFileSize()
 		fclose(samp_server_exe);
 	}
 	return file_size;
+
 }
 
 bool CheckMemmory(char*check, char*mas, int mas_length)
@@ -110,33 +104,4 @@ void ChangeSymbols(cell &symbol)
 {
 	if ((symbol >= -64 && symbol <= -1) || symbol == -88 || symbol == -72)
 		symbol = 256 + symbol;
-}
-
-static int Ini_Handler(void* user, const char* section, const char* name, const char* value)
-{
-	Settings* pconfig = (Settings*)user;
-
-#define MATCH(s, n) strcmp(section, s) == 0 && strcmp(name, n) == 0
-	if (MATCH("Vodka_SAMP_Settings", "EnginePlugin")) {
-		pconfig->EnginePlugin = atoi(value);
-	}
-	else if (MATCH("Vodka_SAMP_Settings", "AllowMixSymbols")) {
-		pconfig->MixSymbols = atoi(value);
-	}
-	/*else if (MATCH("Section1", "var3")) {
-	pconfig->email = strdup(value);
-	}*/
-	else {
-		return 0;  /* unknown section/name, error */
-	}
-	return 1;
-}
-
-void ShowCopiratesInfo()
-{
-	logprintf("\t[VODKA_SA:MP]: Создатели:[EC]Zero & [KrYpToDeN]!");
-	logprintf("\t\t[EC]Zero\t\t| Skype: mactep_3epo");
-	logprintf("\t\t[KrYpToDeN]\t\t| Skype: kryptoden");
-	logprintf("\t[VODKA_SA:MP]: Приятного распития!");
-	logprintf("\t---------------------------------------------------------------\n\n");
 }
