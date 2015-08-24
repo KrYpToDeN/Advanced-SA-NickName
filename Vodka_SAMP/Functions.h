@@ -38,10 +38,10 @@ int checkNickname(char *name)
 			*name >= 'A' && *name <= 'Z' ||
 			*name >= 'a' && *name <= 'z' ||
 
-			*name >= 'À' && *name <= 'ß' ||
-			*name >= 'à' && *name <= 'ÿ' ||
+			*name >= 'Ã€' && *name <= 'ÃŸ' ||
+			*name >= 'Ã ' && *name <= 'Ã¿' ||
 
-			*name == '¨' || *name == '¸' ||
+			*name == 'Â¨' || *name == 'Â¸' ||
 
 			*name == ']' ||
 			*name == '[' ||
