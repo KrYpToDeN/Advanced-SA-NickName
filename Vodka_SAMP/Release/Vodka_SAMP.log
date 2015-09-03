@@ -1,18 +1,23 @@
-﻿Сборка начата 15.08.2015 1:16:12.
+﻿Сборка начата 03.09.2015 18:42:41.
      1>Проект "C:\Users\Денис\Desktop\Vodka_SAMP\Vodka_SAMP\Vodka_SAMP.vcxproj" в узле 2 (целевые объекты Build).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /sdl /O2 /Oi /Oy- /GL /D _WINDLL /D _MBCS /Gm- /EHsc /MT /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /wd4996 /analyze- /errorReport:prompt main.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /sdl /O2 /Oi /Oy- /GL /D _WINDLL /D _MBCS /Gm- /EHsc /MT /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Release\\" /Fd"Release\vc140.pdb" /Gd /TP /wd4996 /analyze- /errorReport:prompt main.cpp
          main.cpp
+     1>c:\users\денис\desktop\vodka_samp\vodka_samp\memory_info.h(20): warning C4838: преобразование из "int" в "char" требует сужающего преобразования
      1>c:\users\денис\desktop\vodka_samp\vodka_samp\memory_info.h(20): warning C4309: инициализация: усечение константного значения
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Денис\Desktop\Vodka_SAMP\Release\Vodka_SAMP.dll" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /DEF:"Vodka_SAMP.def" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Денис\Desktop\Vodka_SAMP\Release\Vodka_SAMP.pdb" /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Денис\Desktop\Vodka_SAMP\Release\Vodka_SAMP.lib" /MACHINE:X86 /SAFESEH /DLL Release\main.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Денис\Desktop\Vodka_SAMP\Release\Vodka_SAMP.dll" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /DEF:"Vodka_SAMP.def" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /Debug /PDB:"C:\Users\Денис\Desktop\Vodka_SAMP\Release\Vodka_SAMP.pdb" /OPT:REF /OPT:ICF /LTCG:incremental /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Денис\Desktop\Vodka_SAMP\Release\Vodka_SAMP.lib" /MACHINE:X86 /SAFESEH /DLL Release\ini.obj
+         Release\main.obj
          Release\amxplugin.obj
             Создается библиотека C:\Users\Денис\Desktop\Vodka_SAMP\Release\Vodka_SAMP.lib и объект C:\Users\Денис\Desktop\Vodka_SAMP\Release\Vodka_SAMP.exp
          Создание кода
+         0 of 27 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
+           0 functions were new in current compilation
+           0 functions had inline decision re-evaluated but remain unchanged
          Создание кода завершено
          Vodka_SAMP.vcxproj -> C:\Users\Денис\Desktop\Vodka_SAMP\Release\Vodka_SAMP.dll
      1>Сборка проекта "C:\Users\Денис\Desktop\Vodka_SAMP\Vodka_SAMP\Vodka_SAMP.vcxproj" завершена (целевые объекты Build).
 
 Сборка успешно завершена.
 
-Затраченное время: 00:00:00.95
+Затраченное время: 00:00:01.30

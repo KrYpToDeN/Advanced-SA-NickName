@@ -11,12 +11,11 @@ struct JUMP_DATA
 
 #pragma pack(pop)
 
-typedef struct Settings
+struct Settings
 {
 	int EnginePlugin;
 	int MixSymbols;
-};
-Settings Config;
+} Config;
 
 size_t CalcDisp(void* lpFirst, void* lpSecond)
 {
@@ -25,43 +24,74 @@ size_t CalcDisp(void* lpFirst, void* lpSecond)
 
 bool Unlock(void *address, int len) // by 009, edited by Roman1us
 {
-#ifdef WIN32
+#if (defined(WIN32) || defined(_WIN32)) && defined(_MSC_VER) // Windows
 	DWORD
 		oldp;
 	// Shut up the warnings :D
 	return !!VirtualProtect(address, len, PAGE_EXECUTE_READWRITE, &oldp);
-#else
+#else // Linux
 	return !mprotect((void*)(((int)address / PAGESIZE) * PAGESIZE), len, PROT_WRITE | PROT_READ | PROT_EXEC);
 #endif
+}
+
+inline bool IsRussianSymbol(char name, bool &RussianSymbols)
+{
+	if (!
+		(name >= 'À' && name <= 'ß' ||
+		name >= 'à' && name <= 'ÿ' ||
+		name == '¨' || name == '¸')) return false;
+	if (!Config.MixSymbols)
+		RussianSymbols = true;
+	return true;
+}
+
+inline bool IsEnglishSymbol(char name, bool &EnglishSymbols)
+{
+	if (!
+		(name >= 'A' && name <= 'Z' ||
+		name >= 'a' && name <= 'z')) return false;
+	if (!Config.MixSymbols)
+		EnglishSymbols = true;
+	return true;
+}
+
+inline bool IsOtherSymbol(char name)
+{
+	if (!(name == ']' ||
+		name == '[' ||
+		name == '_' ||
+		name == '$' ||
+		name == '=' ||
+		name == ')' ||
+		name == '(' ||
+		name == '@' ||
+		name == '.')) return false;
+	return true;
+}
+
+inline bool IsNumericSybmol(char name)
+{
+	if (!(name >= '0' && name <= '9'))return false;
+	return true;
 }
 
 int checkNickname(char *name)
 {
 	int len = 0;
+	bool RussianSymbols = false;
+	bool EnglishSymbols = false;
 	while (*name)
 	{
-		if (!(
-			*name >= '0' && *name <= '9' ||
-			*name >= 'A' && *name <= 'Z' ||
-			*name >= 'a' && *name <= 'z' ||
-
-			*name >= 'À' && *name <= 'ß' ||
-			*name >= 'à' && *name <= 'ÿ' ||
-
-			*name == '¨' || *name == '¸' ||
-
-			*name == ']' ||
-			*name == '[' ||
-			*name == '_' ||
-			*name == '$' ||
-			*name == '=' ||
-			*name == ')' ||
-			*name == '(' ||
-			*name == '@' ||
-			*name == '.'
-			)) return 1;
-		name++;
-		len++;
+		if (IsNumericSybmol(*name) ||
+			(!RussianSymbols && IsEnglishSymbol(*name, EnglishSymbols)) ||
+			(!EnglishSymbols && IsRussianSymbol(*name, RussianSymbols)) ||
+			IsOtherSymbol(*name))
+		{
+			name++;
+			len++;
+			continue;
+		}
+		return 1;
 	}
 
 	if (len < 3 || len > 20) return 1;
@@ -75,10 +105,10 @@ int GetFileSize()
 
 	char fPath[MAX_PATH];
 
-#ifdef WIN32
+#if (defined(WIN32) || defined(_WIN32)) && defined(_MSC_VER) // Windows
 	GetModuleFileName(NULL, fPath, sizeof(fPath));
 	fopen_s(&samp_server_exe, fPath, "rb");
-#else
+#else // Linux
 	int bytes = readlink("/proc/self/exe", fPath, sizeof(fPath) - 1);
 	fPath[bytes] = '\0';
 	samp_server_exe = fopen(fPath, "rb");
@@ -106,10 +136,12 @@ bool CheckMemmory(char*check, char*mas, int mas_length)
 	return true;
 }
 
-void ChangeSymbols(cell &symbol)
+inline void ChangeSymbols(cell &symbol)
 {
-	if ((symbol >= -64 && symbol <= -1) || symbol == -88 || symbol == -72)
-		symbol = 256 + symbol;
+	if (symbol < 0)
+	{
+		symbol = unsigned char(symbol); // + 256
+	}
 }
 
 static int Ini_Handler(void* user, const char* section, const char* name, const char* value)

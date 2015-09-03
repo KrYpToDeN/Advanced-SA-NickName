@@ -11,12 +11,13 @@ PLUGIN_EXPORT bool PLUGIN_CALL Load(void **ppData)
 	logprintf = (logprintf_t)ppData[PLUGIN_DATA_LOGPRINTF];
 
 	logprintf("\n\n\t---------------------------------------------------------------");
-	logprintf("\t[VODKA_SA:MP]: Плагин v2.5 by [KrYpToDeN] & [EC]Zero");
+	logprintf("\t[VODKA_SA:MP]: Плагин v3.0 by [KrYpToDeN] & [EC]Zero");
 	logprintf("\t[VODKA_SA:MP]: Плагин поддержки русских никнеймов загружается..");
 
 	if (ini_parse("scriptfiles//Vodka_SAMP.ini", Ini_Handler, &Config) < 0) 
 	{
 		logprintf("\n\t[VODKA_SA:MP]: Файл настроек отсутствует | Создаю по адресу \"scriptfiles//Vodka_SAMP.ini\"\n");
+
 		FILE *SettingFile;
 		SettingFile = fopen("scriptfiles//Vodka_SAMP.ini", "wt");
 
@@ -45,31 +46,19 @@ PLUGIN_EXPORT bool PLUGIN_CALL Load(void **ppData)
 
 	void * function_adress = 0;
 
-#if (defined(WIN32) || defined(_WIN32)) && defined(_MSC_VER) // windows
-	for (char * adress = (char *)MEMORY_START; adress < ((char *)MEMORY_START + file_size - 90); adress++)
+	for (char * adress = (char *)MEMORY_START; adress < ((char *)MEMORY_START + file_size - MAX_ADRESSES); adress++)
 	{
-		if (CheckMemmory(adress, Adresses, 90))
+		if (CheckMemmory(adress, Adresses, MAX_ADRESSES))
 		{
 			function_adress = adress;
 			logprintf("\t[VODKA_SA:MP]: Адрес '0x%x' найден.", function_adress);
 			break;
 		}
 	}
-#else // Linux
-	for (char * adress = (char *)MEMORY_START; adress < ((char *)MEMORY_START + file_size - 117); adress++)
-	{
-		if (CheckMemmory(adress, Adresses, 117))
-		{
-			function_adress = adress;
-			logprintf("\t[VODKA_SA:MP]: Адрес '0x%x' найден.", function_adress);
-			break;
-		}
-	}
-#endif	
 
 	if (function_adress == 0)
 	{
-		logprintf("\n\tОШИБКА: Какая-то непредвиденная ошибка.\n\tВидимо вы запустили плагин на версии ниже 0.3a\n\tОбратитесь в скайп kryptoden\n\n\tСворачиваемся..");
+		logprintf("\n\tОШИБКА: Какая-то непредвиденная ошибка.\n\tВидимо, вы запустили плагин на версии ниже 0.3a\n\tОбратитесь в скайп kryptoden\n\n\tСворачиваемся..");
 		logprintf("\t---------------------------------------------------------------\n\n");
 		return false;
 	}
@@ -92,20 +81,36 @@ PLUGIN_EXPORT bool PLUGIN_CALL Load(void **ppData)
 
 		logprintf("\t[VODKA_SA:MP]: Плагин успешно запущен.");
 
-#if (defined(WIN32) || defined(_WIN32)) && defined(_MSC_VER) // windows
-
 		char * version_name = 0;
+		int vname_size = strlen(samp_version_name);
 
-		for (char * adress = (char *)MEMORY_START; adress < ((char *)MEMORY_START + file_size - 14); adress++)
+		for (char * adress = (char *)MEMORY_START; adress < ((char *)MEMORY_START + file_size - vname_size); adress++)
 		{
-			if (CheckMemmory(adress, samp_version_name, 14))
+			if (CheckMemmory(adress, samp_version_name, vname_size))
 			{
-				version_name = adress - 12;
-				logprintf("\t[VODKA_SA:MP]: Версия сервера -  %s", version_name);
+				*adress = 0; // избавляемся от ненужной концовки
+
+				int start_pos = 0;
+
+				// Мой быдлокод..
+				/*for (int i = 12; i > 0; i--)// 12 - максимальное число, откуда искать. Может когда-то и придётся увеличить, но пока что не надо. Версия сервера не привышает 12 символов.
+				{
+					if ((adress - i)[0] != 'v') continue;
+					start_pos = (i - 1); // 1 - эта та самая буква v
+					break;
+				}*/
+				
+				while ((adress - start_pos)[0] != 'v') // Универсальный код. Ничего увеличивать не надо.
+				{
+					start_pos++;
+				}
+
+				version_name = adress - (abs(start_pos) - 1); // 1 - эта та самая буква v
+
+				logprintf("\t[VODKA_SA:MP]: Версия сервера - %s", version_name);
 				break;
 			}
 		}
-#endif
 		ShowCopiratesInfo();
 	}
 	return true;
@@ -144,5 +149,5 @@ PLUGIN_EXPORT int PLUGIN_CALL AmxUnload(AMX *amx)
 
 PLUGIN_EXPORT void PLUGIN_CALL Unload()
 {
-	logprintf("\t[VODKA_SA:MP]: Плагин v2.0 выгружен успешно!");
+	logprintf("\t[VODKA_SA:MP]: Плагин v3.0 выгружен успешно!");
 }
