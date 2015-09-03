@@ -140,7 +140,7 @@ inline void ChangeSymbols(cell &symbol)
 {
 	if (symbol < 0)
 	{
-		symbol = unsigned char(symbol); // + 256
+		symbol += 256;
 	}
 }
 

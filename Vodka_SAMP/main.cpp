@@ -1,5 +1,7 @@
 #include "includes.h"
 
+#include <ctime>
+
 PLUGIN_EXPORT unsigned int PLUGIN_CALL Supports()
 {
 	return SUPPORTS_VERSION | SUPPORTS_AMX_NATIVES;
@@ -48,7 +50,7 @@ PLUGIN_EXPORT bool PLUGIN_CALL Load(void **ppData)
 
 	for (char * adress = (char *)MEMORY_START; adress < ((char *)MEMORY_START + file_size - MAX_ADRESSES); adress++)
 	{
-		if (CheckMemmory(adress, Adresses, MAX_ADRESSES))
+		if (CheckMemmory(adress, reinterpret_cast<char*>(Adresses), MAX_ADRESSES))
 		{
 			function_adress = adress;
 			logprintf("\t[VODKA_SA:MP]: Адрес '0x%x' найден.", function_adress);
