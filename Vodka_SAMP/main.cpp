@@ -1,7 +1,5 @@
 #include "includes.h"
 
-#include <ctime>
-
 PLUGIN_EXPORT unsigned int PLUGIN_CALL Supports()
 {
 	return SUPPORTS_VERSION | SUPPORTS_AMX_NATIVES;
