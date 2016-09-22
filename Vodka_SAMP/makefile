@@ -1,6 +1,6 @@
 OUTFILE = "Vodka_SAMP.so"
  
-COMPILE_FLAGS=-m32 -c -O3 -w -DLINUX -I./SDK/amx/
+COMPILE_FLAGS= -std=c++11 -m32 -c -O3 -w -DLINUX -I./SDK/amx/
 
 all:
 	gcc $(COMPILE_FLAGS) SDK/amx/*.c
