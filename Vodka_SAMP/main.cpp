@@ -1,3 +1,5 @@
+#define HAVE_STDINT_H
+
 #include "includes.h"
 
 PLUGIN_EXPORT unsigned int PLUGIN_CALL Supports()
@@ -10,63 +12,121 @@ PLUGIN_EXPORT bool PLUGIN_CALL Load(void **ppData)
 	pAMXFunctions = ppData[PLUGIN_DATA_AMX_EXPORTS];
 	logprintf = (logprintf_t)ppData[PLUGIN_DATA_LOGPRINTF];
 
-	logprintf("\n\n\t---------------------------------------------------------------");
-	logprintf("\t[VODKA_SA:MP]: Плагин v3.0 by [KrYpToDeN] & [EC]Zero");
-	logprintf("\t[VODKA_SA:MP]: Плагин поддержки русских никнеймов загружается..");
+	logprintf("\n\n\t-------------Advanced SA NickName (ASAN)-------------");
+	logprintf("\t[ASAN]: Plugin v4.0 by [KrYpToDeN] & [EC]Zero");
+	logprintf("\t[ASAN]: Plugin loading..");
 
-	if (ini_parse("scriptfiles//Vodka_SAMP.ini", Ini_Handler, &Config) < 0) 
+	INIReader reader("scriptfiles//ASAN_Config.ini");
+	if (reader.ParseError() < 0)
 	{
-		logprintf("\n\t[VODKA_SA:MP]: Файл настроек отсутствует | Создаю по адресу \"scriptfiles//Vodka_SAMP.ini\"\n");
+		logprintf("\t[ASAN | SETTINGS]: Creating settings file `ASAN_Config.ini` in `scriptfiles` folder\n");
 
 		FILE *SettingFile;
-		SettingFile = fopen("scriptfiles//Vodka_SAMP.ini", "wt");
+		SettingFile = fopen("scriptfiles//ASAN_Config.ini", "wt");
 
 		if (!SettingFile)
 		{
-			logprintf("\n\tПроизошла непредвиденная ошибка создания файла настроек. Возможно, отсутствует каталог \"scriptfiles\".\n\n\tСворачиваемся..");
+			logprintf("\n\t[ASAN | ERROR]: You don't have folder `scriptfiles` or rights to write.\n\n\tAborting..");
 			ShowCopiratesInfo();
 			return false;
 		}
 
-		Config.EnginePlugin = 1;
-		Config.MixSymbols = 1;
+		Config.EnginePlugin		= ASAN_DEFAULT_ENGINE;
+		std::regex temp_regex_template(ASAN_DEFAULT_TEMPLATE, std::regex::icase);
+		Config.RegexTemplate	= temp_regex_template;
+		Config.RegexCase		= ASAN_DEFAULT_REGCASE;
+		Config.AllowSpace		= ASAN_DEFAULT_SPACE;
 
-		fwrite("[Vodka_SAMP_Settings]\nEnginePlugin = 1\t\t;Вкл.плагин - 1, Откл.плагин - 0\nAllowMixSymbols = 1\t\t;Вкл.смешивание языков - 1, Откл.смешивание языков - 0", 1, strlen("[Vodka_SAMP_Settings]\nEnginePlugin = 1\t\t;Вкл.плагин - 1, Откл.плагин - 0\nAllowMixSymbols = 1\t\t;Вкл.смешивание языков - 1, Откл.смешивание языков - 0"), SettingFile);
+
+		char ftext[600];
+		sprintf(ftext, "\
+[ASAN_Settings]\n\
+EnginePlugin = %d\t\t;Enable plugin - 1, Disable plugin - 0\n\
+RegexTemplate = %s\t\t;Regular expression (WITHOUT regard to case)\n\
+RegexCase = %d\t\t;Case sensitivity - 1, Case insensitive - 0\n\
+AllowSpace = %d\t\t;Replace symbol(_) to symbol( ) - 1, Default - 0\n\
+;Example if 'AllowSpace = 1' -> 'John_Connor' will be 'John Connor' after connect. DON'T WORK ON SA:MP MAIN WINDOW (ONLY SERVER SIDE).",
+		Config.EnginePlugin, ASAN_DEFAULT_TEMPLATE, Config.RegexCase, Config.AllowSpace);
+
+
+		fwrite(ftext, 1, strlen(ftext), SettingFile);
+		
 		fclose(SettingFile);
+	}
+	else
+	{
+		char RegexText[256];
+		Config.EnginePlugin	= reader.GetBoolean("ASAN_Settings", "EnginePlugin", true);
+		sprintf(RegexText, reader.Get("ASAN_Settings", "RegexTemplate", ASAN_DEFAULT_TEMPLATE).c_str());
+		Config.RegexCase	= reader.GetBoolean("ASAN_Settings", "RegexCase", true);
+		Config.AllowSpace = reader.GetBoolean("ASAN_Settings", "AllowSpace", true);
+
+		if (Config.RegexCase)
+		{
+			std::regex temp_regex_template(RegexText, std::regex::icase);
+			Config.RegexTemplate = temp_regex_template;
+		}
+		else
+		{
+			std::regex temp_regex_template(RegexText);
+			Config.RegexTemplate = temp_regex_template;
+		}
 	}
 
 	int file_size = GetFileSize();
 
 	if (!Unlock((void*)MEMORY_START, file_size))
 	{
-		logprintf("\n\tОШИБКА: Ошибка инициализации.\n\tОбратитесь в скайп kryptoden\n\n\tСворачиваемся..");
+		logprintf("\n\t[ASAN | ERROR]: Can't read SA:MP memmory.\n\tWrite me into ussue, please!\n\n\tAborting..");
 		ShowCopiratesInfo();
 		return false;
 	}
 
 	void * function_adress = 0;
 
-	for (char * adress = (char *)MEMORY_START; adress < ((char *)MEMORY_START + file_size - MAX_ADRESSES); adress++)
+	for (char * address = (char *)MEMORY_START; address < ((char *)MEMORY_START + file_size - MAX_ADRESSES); address++)
 	{
-		if (CheckMemmory(adress, reinterpret_cast<char*>(Adresses), MAX_ADRESSES))
+		if (CheckMemmory(address, reinterpret_cast<char*>(SAMP_Addresses), MAX_ADRESSES))
 		{
-			function_adress = adress;
-			logprintf("\t[VODKA_SA:MP]: Адрес '0x%x' найден.", function_adress);
+			function_adress = address;
+			logprintf("\t[ASAN]: Memmory address '0x%x' was found.", function_adress);
 			break;
 		}
 	}
 
 	if (function_adress == 0)
 	{
-		logprintf("\n\tОШИБКА: Какая-то непредвиденная ошибка.\n\tВидимо, вы запустили плагин на версии ниже 0.3a\n\tОбратитесь в скайп kryptoden\n\n\tСворачиваемся..");
-		logprintf("\t---------------------------------------------------------------\n\n");
+		logprintf("\n\t[ASAN | ERROR]: Can't find memmory address.\n\tMaybe, you your server has version less than 0.3a\n\tWrite me into ussue, please!\n\n\tAborting..");
+		ShowCopiratesInfo();
 		return false;
 	}
 
+	char * version_name = 0;
+	int vname_size = strlen(samp_version_name);
+
+	for (char * address = (char *)MEMORY_START; address < ((char *)MEMORY_START + file_size - vname_size); address++)
+	{
+		if (CheckMemmory(address, samp_version_name, vname_size))
+		{
+			*address = 0; // destroy unnecessary ending
+
+			int start_pos = 0;
+
+			while ((address - start_pos)[0] != 'v')
+			{
+				start_pos++;
+			}
+
+			version_name = address - (abs(start_pos) - 1); // 1 - symbol v
+
+			logprintf("\t[ASAN]: Server version is - `%s`", version_name);
+			break;
+		}
+	}
 
 	if (!Config.EnginePlugin)
 	{
-		logprintf("\n\tПлагин отключён. Посмотрите файл настроек Vodka_SAMP.ini\n\n\tСворачиваемся..");
+		logprintf("\n\t[ASAN | DISABLED]: Plugin was disabled. Check settings file `ASAN_Config.ini` in `scriptfiles` folder!\n\n\tAborting..");
 		ShowCopiratesInfo();
 		return false;
 	}
@@ -79,38 +139,8 @@ PLUGIN_EXPORT bool PLUGIN_CALL Load(void **ppData)
 		checkFunct->adr = CalcDisp((void*)checkFunct, (void*)checkNickname); // funct address
 		checkFunct->nop = 0x90; // NOP
 
-		logprintf("\t[VODKA_SA:MP]: Плагин успешно запущен.");
+		logprintf("\t[ASAN | SUCCESS]: Plugin was successfully started.");
 
-		char * version_name = 0;
-		int vname_size = strlen(samp_version_name);
-
-		for (char * adress = (char *)MEMORY_START; adress < ((char *)MEMORY_START + file_size - vname_size); adress++)
-		{
-			if (CheckMemmory(adress, samp_version_name, vname_size))
-			{
-				*adress = 0; // избавляемся от ненужной концовки
-
-				int start_pos = 0;
-
-				// Мой быдлокод..
-				/*for (int i = 12; i > 0; i--)// 12 - максимальное число, откуда искать. Может когда-то и придётся увеличить, но пока что не надо. Версия сервера не привышает 12 символов.
-				{
-					if ((adress - i)[0] != 'v') continue;
-					start_pos = (i - 1); // 1 - эта та самая буква v
-					break;
-				}*/
-				
-				while ((adress - start_pos)[0] != 'v') // Универсальный код. Ничего увеличивать не надо.
-				{
-					start_pos++;
-				}
-
-				version_name = adress - (abs(start_pos) - 1); // 1 - эта та самая буква v
-
-				logprintf("\t[VODKA_SA:MP]: Версия сервера - %s", version_name);
-				break;
-			}
-		}
 		ShowCopiratesInfo();
 	}
 	return true;
@@ -133,7 +163,7 @@ cell AMX_NATIVE_CALL hook_GetName(AMX *amx, cell *params)
 
 AMX_NATIVE_INFO PluginNatives[] =
 {
-	{ "KryptoHook_GetPlayerName", hook_GetName },
+	{ "ASAN_GetPlayerName", hook_GetName },
 	{ 0, 0 }
 };
 
@@ -149,5 +179,5 @@ PLUGIN_EXPORT int PLUGIN_CALL AmxUnload(AMX *amx)
 
 PLUGIN_EXPORT void PLUGIN_CALL Unload()
 {
-	logprintf("\t[VODKA_SA:MP]: Плагин v3.0 выгружен успешно!");
+	logprintf("\t[ASAN]: Plugin v4.0 was successfully unloaded!");
 }

@@ -1,5 +1,7 @@
 #pragma once
 
+#include <regex>
+
 #pragma pack(push, 1)
 
 struct JUMP_DATA
@@ -13,9 +15,11 @@ struct JUMP_DATA
 
 struct Settings
 {
-	int EnginePlugin;
-	int MixSymbols;
-} Config;
+	bool EnginePlugin;
+	std::regex RegexTemplate;
+	bool RegexCase;
+	bool AllowSpace;
+}Config;
 
 size_t CalcDisp(void* lpFirst, void* lpSecond)
 {
@@ -34,28 +38,7 @@ bool Unlock(void *address, int len) // by 009, edited by Roman1us
 #endif
 }
 
-inline bool IsRussianSymbol(char name, bool &RussianSymbols)
-{
-	if (!
-		(name >= 'А' && name <= 'Я' ||
-		name >= 'а' && name <= 'я' ||
-		name == 'Ё' || name == 'ё')) return false;
-	if (!Config.MixSymbols)
-		RussianSymbols = true;
-	return true;
-}
-
-inline bool IsEnglishSymbol(char name, bool &EnglishSymbols)
-{
-	if (!
-		(name >= 'A' && name <= 'Z' ||
-		name >= 'a' && name <= 'z')) return false;
-	if (!Config.MixSymbols)
-		EnglishSymbols = true;
-	return true;
-}
-
-inline bool IsOtherSymbol(char name)
+/*inline bool IsOtherSymbol(char name)
 {
 	if (!(name == ']' ||
 		name == '[' ||
@@ -67,35 +50,15 @@ inline bool IsOtherSymbol(char name)
 		name == '@' ||
 		name == '.')) return false;
 	return true;
-}
-
-inline bool IsNumericSybmol(char name)
-{
-	if (!(name >= '0' && name <= '9'))return false;
-	return true;
-}
+}*/
 
 int checkNickname(char *name)
 {
-	int len = 0;
-	bool RussianSymbols = false;
-	bool EnglishSymbols = false;
-	while (*name)
+	int len = strlen(name);
+	if (!std::regex_match(name, Config.RegexTemplate) || len < 3 || len > 20)
 	{
-		if (IsNumericSybmol(*name) ||
-			(!RussianSymbols && IsEnglishSymbol(*name, EnglishSymbols)) ||
-			(!EnglishSymbols && IsRussianSymbol(*name, RussianSymbols)) ||
-			IsOtherSymbol(*name))
-		{
-			name++;
-			len++;
-			continue;
-		}
 		return 1;
 	}
-
-	if (len < 3 || len > 20) return 1;
-
 	return 0;
 }
 
@@ -144,31 +107,8 @@ inline void ChangeSymbols(cell &symbol)
 	}
 }
 
-static int Ini_Handler(void* user, const char* section, const char* name, const char* value)
-{
-	Settings* pconfig = (Settings*)user;
-
-#define MATCH(s, n) strcmp(section, s) == 0 && strcmp(name, n) == 0
-	if (MATCH("Vodka_SAMP_Settings", "EnginePlugin")) {
-		pconfig->EnginePlugin = atoi(value);
-	}
-	else if (MATCH("Vodka_SAMP_Settings", "AllowMixSymbols")) {
-		pconfig->MixSymbols = atoi(value);
-	}
-	/*else if (MATCH("Section1", "var3")) {
-	pconfig->email = strdup(value);
-	}*/
-	else {
-		return 0;  /* unknown section/name, error */
-	}
-	return 1;
-}
-
 void ShowCopiratesInfo()
 {
-	logprintf("\t[VODKA_SA:MP]: Создатели:[EC]Zero & [KrYpToDeN]!");
-	logprintf("\t\t[EC]Zero\t\t| Skype: mactep_3epo");
-	logprintf("\t\t[KrYpToDeN]\t\t| Skype: kryptoden");
-	logprintf("\t[VODKA_SA:MP]: Приятного распития!");
-	logprintf("\t---------------------------------------------------------------\n\n");
+	logprintf("\t[ASAN]: https://github.com/KrYpToDeN/Advanced-SA-NickName");
+	logprintf("\t-----------------------------------------------------\n\n");
 }

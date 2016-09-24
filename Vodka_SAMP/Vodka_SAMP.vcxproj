@@ -74,6 +74,7 @@
     <ClInclude Include="functions.h" />
     <ClInclude Include="includes.h" />
     <ClInclude Include="ini.h" />
+    <ClInclude Include="INIReader.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="memory_info.h" />
     <ClInclude Include="SDK\amx\amx.h" />
@@ -82,7 +83,8 @@
     <ClInclude Include="SDK\plugincommon.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ini.cpp" />
+    <ClCompile Include="ini.c" />
+    <ClCompile Include="INIReader.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="SDK\amxplugin.cpp" />
   </ItemGroup>

@@ -7,4 +7,4 @@
 #include "main.h"
 #include "memory_info.h"
 #include "functions.h"
-#include "ini.h"
+#include "INIReader.h"

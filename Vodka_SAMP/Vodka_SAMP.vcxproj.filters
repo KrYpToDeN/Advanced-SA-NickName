@@ -17,6 +17,7 @@
     <ClInclude Include="memory_info.h" />
     <ClInclude Include="includes.h" />
     <ClInclude Include="functions.h" />
+    <ClInclude Include="INIReader.h" />
     <ClInclude Include="ini.h" />
   </ItemGroup>
   <ItemGroup>
@@ -24,7 +25,8 @@
     <ClCompile Include="SDK\amxplugin.cpp">
       <Filter>SDK</Filter>
     </ClCompile>
-    <ClCompile Include="ini.cpp" />
+    <ClCompile Include="INIReader.cpp" />
+    <ClCompile Include="ini.c" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Vodka_SAMP.def" />
