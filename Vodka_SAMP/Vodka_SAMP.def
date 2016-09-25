@@ -1,7 +1,0 @@
-LIBRARY	"Vodka_SAMP"
-EXPORTS
-	Supports
-	Load
-	Unload
-	AmxLoad
-	AmxUnload

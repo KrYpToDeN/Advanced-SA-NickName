@@ -1,0 +1,12 @@
+﻿C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppBuild.targets(392,5): warning MSB8028: The intermediate directory (Release\) contains files shared from another project (Vodka_SAMP.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  main.cpp
+     Создается библиотека C:\Advanced-SA-NickName\Release\Advanced-SA-NickName.lib и объект C:\Advanced-SA-NickName\Release\Advanced-SA-NickName.exp
+Advanced-SA-NickName.exp : warning LNK4070: директива /OUT:Vodka_SAMP.dll в .EXP отличается от имени выходного файла "C:\Advanced-SA-NickName\Release\Advanced-SA-NickName.dll"; директива игнорируется
+  Создание кода
+  1 of 1140 functions ( 0.1%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
+  Создание кода завершено
+Advanced-SA-NickName.exp : warning LNK4070: директива /OUT:Vodka_SAMP.dll в .EXP отличается от имени выходного файла "C:\Advanced-SA-NickName\Release\Advanced-SA-NickName.dll"; директива игнорируется
+  Advanced-SA-NickName.vcxproj -> C:\Advanced-SA-NickName\Release\Advanced-SA-NickName.dll
+  Advanced-SA-NickName.vcxproj -> C:\Advanced-SA-NickName\Release\Advanced-SA-NickName.pdb (Full PDB)
