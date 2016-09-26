@@ -19,7 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source\INI\ini.c" />
+    <ClCompile Include="Source\INI\ini.cpp" />
     <ClCompile Include="Source\INI\INIReader.cpp" />
     <ClCompile Include="Source\main.cpp" />
     <ClCompile Include="Source\SDK\amxplugin.cpp" />

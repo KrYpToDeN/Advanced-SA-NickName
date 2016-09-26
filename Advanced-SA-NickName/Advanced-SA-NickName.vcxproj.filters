@@ -15,17 +15,17 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source\INI\ini.c">
-      <Filter>Source\INI</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\INI\INIReader.cpp">
-      <Filter>Source\INI</Filter>
-    </ClCompile>
     <ClCompile Include="Source\SDK\amxplugin.cpp">
       <Filter>Source\SDK</Filter>
     </ClCompile>
     <ClCompile Include="Source\main.cpp">
       <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\INI\INIReader.cpp">
+      <Filter>Source\INI</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\INI\ini.cpp">
+      <Filter>Source\INI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
