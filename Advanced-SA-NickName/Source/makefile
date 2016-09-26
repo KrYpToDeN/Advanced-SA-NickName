@@ -1,4 +1,4 @@
-OUTFILE = "Vodka_SAMP.so"
+OUTFILE = "Advanced-SA-NickName.so"
  
 COMPILE_FLAGS= -std=c++11 -m32 -c -O3 -w -DLINUX -I./SDK/amx/
 
