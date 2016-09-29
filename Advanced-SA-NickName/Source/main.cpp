@@ -37,7 +37,7 @@ PLUGIN_EXPORT bool PLUGIN_CALL Load(void **ppData)
 		Config.AllowSpace		= ASAN_DEFAULT_SPACE;
 		Config.MaxSpaces		= ASAN_DEFAULT_MAX_SPACES;
 
-		char ftext[608 + sizeof(ASAN_DEFAULT_TEMPLATE)];
+		char ftext[609 + sizeof(ASAN_DEFAULT_TEMPLATE)];
 		sprintf(ftext, "\
 [ASAN_Settings]\n\n\
 EnginePlugin = %d\n\
@@ -49,7 +49,7 @@ AllowSpace = %d\n\
 ;Пример. Если 'AllowSpace = 1' -> 'John_Connor' будет в табе как 'John Connor' после коннекта. НЕ ИСПОЛЬЗУЙТЕ ПРОБЕЛЫ В ОКНЕ САМПА! ТОЛЬКО СЕРВЕРНАЯ СТОРОНА!\n\n\
 MaxSpaces = %d\n\
 ;РАБОТАЕТ ТОЛЬКО, ЕСЛИ `AllowSpace` = 1.\n\
-;Количество замен символа (_) на символ (). Тоесть если стоит 1, то система заменит символ только 1 раз, а остальные пропустит!",
+;Количество замен символа (_) на символ ( ). Тоесть если стоит 1, то система заменит символ только 1 раз, а остальные пропустит!",
 		Config.EnginePlugin, ASAN_DEFAULT_TEMPLATE, Config.AllowSpace, Config.MaxSpaces);
 
 		fwrite(ftext, 1, strlen(ftext), SettingFile);

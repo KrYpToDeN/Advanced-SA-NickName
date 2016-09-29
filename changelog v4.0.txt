@@ -57,9 +57,11 @@
 		3. В Вашем гейм-моде/скриптах измените 'include "Vodka_SAMP"' на 'include "ASAN"'
 		4. В сервер.cfg в строке 'plugins' измените 'Vodka_SAMP' на 'ASAN'
 			
-Официальная ссылка для обсуждения плагина
-	http://pawno.su/showthread.php?t=110165
+Официальные ссылки для обсуждения плагина
+	http://lightcode.ru/showthread.php?t=113118
+	http://pawno.su/showthread.php?t=114245
+	http://forum.sa-mp.com/showthread.php?t=617993
 	
 Официальная ссылка на исходный код и последние обновления
-	https://github.com/KrYpToDeN/Vodka_SAMP
+	https://github.com/KrYpToDeN/Advanced-SA-NickName
 	
