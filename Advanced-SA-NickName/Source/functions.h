@@ -130,7 +130,6 @@ cell AMX_NATIVE_CALL CheckValidNickName(AMX *amx, cell *params)
 	amx_StrParam(amx, params[1], name);
 	if (name != NULL)
 	{
-		std::cmatch result;
 		if (!std::regex_match(name, Config.RegexTemplate))
 			return false;
 	}
