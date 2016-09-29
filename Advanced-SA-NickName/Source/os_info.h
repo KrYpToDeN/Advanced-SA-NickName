@@ -3,7 +3,6 @@
 #if (defined(WIN32) || defined(_WIN32)) && defined(_MSC_VER) // Windows
 
 #include					<windows.h>
-
 #define MEMORY_START		0x401000
 #define MAX_ADRESSES		0x5A
 
@@ -20,8 +19,12 @@ unsigned char SAMP_Addresses[MAX_ADRESSES] =
 #else // Linux
 
 #include					<sys/mman.h>
+/*#include					<sys/types.h> // Regex
+#include					<regex.h>*/
 #include					<unistd.h>
 #include					<string.h> // для функции strlen
+
+
 
 #define MEMORY_START		0x804B430
 #define MAX_ADRESSES		0x75

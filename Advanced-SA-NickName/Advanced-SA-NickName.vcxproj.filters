@@ -61,8 +61,5 @@
     <None Include="Source\ASAN.def">
       <Filter>Source</Filter>
     </None>
-    <None Include="Source\makefile">
-      <Filter>Source</Filter>
-    </None>
   </ItemGroup>
 </Project>

@@ -38,8 +38,7 @@ bool Unlock(void *address, int len)
 
 int checkNickname(char *name)
 {
-	int len = strlen(name);
-	if (std::regex_match(name, Config.RegexTemplate) && len >= 3 && len <= 20)
+	if (std::regex_match(name, Config.RegexTemplate))
 	{
 		if (Config.MaxSpaces > 0 && Config.AllowSpace)
 		{
@@ -107,5 +106,34 @@ inline void ChangeSymbols(cell &symbol)
 void ShowCopiratesInfo()
 {
 	logprintf("\t[ASAN]: https://github.com/KrYpToDeN/Advanced-SA-NickName");
-	logprintf("\t-----------------------------------------------------\n\n");
+	logprintf("\t---------------------------------------------------------\n\n");
+}
+
+cell AMX_NATIVE_CALL hook_GetName(AMX *amx, cell *params)
+{
+	cell *destination = NULL;
+	amx_GetAddr(amx, params[1], &destination);
+
+	int len = 0;
+
+	while (destination[len])
+	{
+		ChangeSymbols(destination[len]);
+		len++;
+	}
+	return 1;
+}
+
+cell AMX_NATIVE_CALL CheckValidNickName(AMX *amx, cell *params)
+{
+	char* name = NULL;
+	amx_StrParam(amx, params[1], name);
+	if (name != NULL)
+	{
+		int len = strlen(name);
+		std::cmatch result;
+		if (!std::regex_match(name, Config.RegexTemplate))
+			return false;
+	}
+	return true;
 }

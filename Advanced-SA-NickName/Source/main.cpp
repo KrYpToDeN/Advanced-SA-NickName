@@ -12,17 +12,17 @@ PLUGIN_EXPORT bool PLUGIN_CALL Load(void **ppData)
 	pAMXFunctions = ppData[PLUGIN_DATA_AMX_EXPORTS];
 	logprintf = (logprintf_t)ppData[PLUGIN_DATA_LOGPRINTF];
 
-	logprintf("\n\n\t-------------Advanced SA NickName (ASAN)-------------");
+	logprintf("\n\n\t---------------Advanced SA NickName (ASAN)---------------");
 	logprintf("\t[ASAN]: Плагин v4.0 by [KrYpToDeN] & [EC]Zero");
 	logprintf("\t[ASAN]: Плагин загружается..");
 
-	INIReader reader("scriptfiles//ASAN_Config.ini");
+	INIReader reader("scriptfiles/ASAN_Config.ini");
 	if (reader.ParseError() < 0)
 	{
 		logprintf("\t[ASAN | SETTINGS]: Создаю файл настроек `ASAN_Config.ini` в папке `scriptfiles`");
 
 		FILE *SettingFile;
-		SettingFile = fopen("scriptfiles//ASAN_Config.ini", "wt");
+		SettingFile = fopen("scriptfiles/ASAN_Config.ini", "wt");
 
 		if (!SettingFile)
 		{
@@ -32,7 +32,7 @@ PLUGIN_EXPORT bool PLUGIN_CALL Load(void **ppData)
 		}
 
 		Config.EnginePlugin		= ASAN_DEFAULT_ENGINE;
-		std::regex temp_regex_template(ASAN_DEFAULT_TEMPLATE, std::regex::icase);
+		std::regex temp_regex_template(ASAN_DEFAULT_TEMPLATE);
 		Config.RegexTemplate	= temp_regex_template;
 		Config.AllowSpace		= ASAN_DEFAULT_SPACE;
 		Config.MaxSpaces		= ASAN_DEFAULT_MAX_SPACES;
@@ -63,7 +63,6 @@ MaxSpaces = %d\n\
 		sprintf(RegexText, reader.Get("ASAN_Settings", "RegexTemplate", ASAN_DEFAULT_TEMPLATE).c_str());
 		Config.AllowSpace = reader.GetBoolean("ASAN_Settings", "AllowSpace", ASAN_DEFAULT_SPACE);
 		Config.MaxSpaces = reader.GetInteger("ASAN_Settings", "MaxSpaces", ASAN_DEFAULT_MAX_SPACES);
-
 		std::regex temp_regex_template(RegexText);
 		Config.RegexTemplate = temp_regex_template;
 	}
@@ -103,7 +102,7 @@ MaxSpaces = %d\n\
 	{
 		if (CheckMemmory(address, samp_version_name, vname_size))
 		{
-			*address = 0; // удаление ненужной концовки
+			*address = 0; // удаление не нужной концовки
 
 			int start_pos = 0;
 
@@ -137,34 +136,6 @@ MaxSpaces = %d\n\
 		logprintf("\t[ASAN | SUCCESS]: Плагин успешно запущен.");
 
 		ShowCopiratesInfo();
-	}
-	return true;
-}
-
-cell AMX_NATIVE_CALL hook_GetName(AMX *amx, cell *params)
-{
-	cell *destination = NULL;
-	amx_GetAddr(amx, params[1], &destination);
-
-	int len = 0;
-	
-	while (destination[len])
-	{
-		ChangeSymbols(destination[len]);
-		len++;
-	}
-	return 1;
-}
-
-cell AMX_NATIVE_CALL CheckValidNickName(AMX *amx, cell *params)
-{
-	char* name = NULL;
-	amx_StrParam(amx, params[1], name);
-	if (name != NULL)
-	{
-		int len = strlen(name);
-		if (!std::regex_match(name, Config.RegexTemplate) || len < 3 || len > 20)
-			return false;
 	}
 	return true;
 }
