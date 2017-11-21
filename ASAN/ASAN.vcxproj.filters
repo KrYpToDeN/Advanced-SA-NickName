@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source">
+      <UniqueIdentifier>{fa36849d-cee7-4c0a-b246-cf155b3a5fad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\SDK">
+      <UniqueIdentifier>{8331f7b0-d9fe-48ff-bfd4-1e7213477666}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\SDK\amx">
+      <UniqueIdentifier>{2fca8c3c-01e7-439d-be0e-81cba99139f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\INI">
+      <UniqueIdentifier>{6e7eff7b-8fe4-430f-85c1-215cd91fd65d}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\INI\ini.cpp">
+      <Filter>Source\INI</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\INI\INIReader.cpp">
+      <Filter>Source\INI</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\SDK\amxplugin.cpp">
+      <Filter>Source\SDK</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\main.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Source\INI\ini.h">
+      <Filter>Source\INI</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\INI\INIReader.h">
+      <Filter>Source\INI</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\SDK\amx\amx.h">
+      <Filter>Source\SDK\amx</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\SDK\plugin.h">
+      <Filter>Source\SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\SDK\plugincommon.h">
+      <Filter>Source\SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\functions.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\includes.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\main.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\os_info.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Source\ASAN.def">
+      <Filter>Source</Filter>
+    </None>
+    <None Include="Source\makefile">
+      <Filter>Source</Filter>
+    </None>
+  </ItemGroup>
+</Project>

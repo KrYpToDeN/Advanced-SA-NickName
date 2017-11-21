@@ -1,0 +1,7 @@
+LIBRARY	"ASAN"
+EXPORTS
+	Supports
+	Load
+	Unload
+	AmxLoad
+	AmxUnload
