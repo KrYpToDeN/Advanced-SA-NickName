@@ -2,39 +2,19 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source">
-      <UniqueIdentifier>{fa36849d-cee7-4c0a-b246-cf155b3a5fad}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\SDK">
-      <UniqueIdentifier>{8331f7b0-d9fe-48ff-bfd4-1e7213477666}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\SDK\amx">
-      <UniqueIdentifier>{2fca8c3c-01e7-439d-be0e-81cba99139f7}</UniqueIdentifier>
+      <UniqueIdentifier>{5343def9-1cb4-4b17-893d-ebac67f5edef}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source\INI">
-      <UniqueIdentifier>{6e7eff7b-8fe4-430f-85c1-215cd91fd65d}</UniqueIdentifier>
+      <UniqueIdentifier>{ab187190-474c-4e27-b0d0-d3f150efa04e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\SDK">
+      <UniqueIdentifier>{bbce827f-d09b-4600-a1ff-9b9f8a5214ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\SDK\amx">
+      <UniqueIdentifier>{26670d31-cb75-41f0-97aa-af2a877ed9bd}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source\INI\ini.cpp">
-      <Filter>Source\INI</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\INI\INIReader.cpp">
-      <Filter>Source\INI</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\SDK\amxplugin.cpp">
-      <Filter>Source\SDK</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\main.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Source\INI\ini.h">
-      <Filter>Source\INI</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\INI\INIReader.h">
-      <Filter>Source\INI</Filter>
-    </ClInclude>
     <ClInclude Include="Source\SDK\amx\amx.h">
       <Filter>Source\SDK\amx</Filter>
     </ClInclude>
@@ -43,6 +23,12 @@
     </ClInclude>
     <ClInclude Include="Source\SDK\plugincommon.h">
       <Filter>Source\SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\INI\ini.h">
+      <Filter>Source\INI</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\INI\INIReader.h">
+      <Filter>Source\INI</Filter>
     </ClInclude>
     <ClInclude Include="Source\functions.h">
       <Filter>Source</Filter>
@@ -56,6 +42,20 @@
     <ClInclude Include="Source\os_info.h">
       <Filter>Source</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\SDK\amxplugin.cpp">
+      <Filter>Source\SDK</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\INI\ini.cpp">
+      <Filter>Source\INI</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\INI\INIReader.cpp">
+      <Filter>Source\INI</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\main.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Source\ASAN.def">

@@ -1,1 +1,11 @@
-﻿  ASAN.vcxproj -> C:\Users\net66\source\repos\Advanced-SA-NickName\Release\ASAN.dll
+﻿  ini.cpp
+  INIReader.cpp
+  main.cpp
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\malloc.h(173): warning C4005: alloca: изменение макроопределения
+  c:\users\net66\source\repos\advanced-sa-nickname\asan\source\sdk\amx/amx.h(87): note: см. предыдущее определение "alloca"
+  amxplugin.cpp
+     Создается библиотека C:\Users\net66\source\repos\Advanced-SA-NickName\Release\ASAN.lib и объект C:\Users\net66\source\repos\Advanced-SA-NickName\Release\ASAN.exp
+  Создание кода
+  All 1031 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Создание кода завершено
+  ASAN.vcxproj -> C:\Users\net66\source\repos\Advanced-SA-NickName\Release\ASAN.dll
