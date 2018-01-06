@@ -1,5 +1,5 @@
 # Advanced-SA-NickName v5.0 - The best NickName plugin. Version 5.0 will be released soon.
-Advanced settings for your nickname:
+#### Advanced settings for your nickname:
 
 1. You can use your own symbols in NickNames (set your rules by Regex templates).
 2. You can use repeated nicknames (more than one same nicknames) on your server.
@@ -16,12 +16,15 @@ Advanced settings for your nickname:
 
 The archive contains plugins for various OS, includes for Pawn code, installation instructions, Regex templates, and a log of changes.
 
---
-For compilation:
+#### For compilation:
 
 1. On Windows OS use Visual Studio (The better version is >= 2017).
 2. On Linux OS use GCC version >= 4.9. Go to 'source' folder. And write - make.
 
-Pleasant use.
+#### License
 
-Yours respectfully, [KrYpToDeN]!
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+
+###### Pleasant use.
+
+###### Yours respectfully, [KrYpToDeN]!
