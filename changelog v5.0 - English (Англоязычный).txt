@@ -1,0 +1,153 @@
+Plugin's translation version 1.0 - 4.0 is released only in Russian language!
+In these versions, support for nicknames is supported only with Russian, English and standard symbols in SA:MP!
+Starting with version 4.0, thanks to Regex, there is support for any symbols in nicknames!
+Starting with version 5.0, the plugin's translation is released in Russian and English languages!
+
+
+Version 1.0
+	1. Created plugin Vodka_SAMP
+	2. Automatic memory address search. Works absolutely on any server's version
+	3. Recognizing the server version (Windows only)
+	2. Source code is closed.
+
+Version 2.0
+	1. Added use of Russian letters ё-Ё
+	2. Fixed bug with length of nickname. Do not forget to add include in all FilterScipts and Gamemode.
+	
+Version 3.0
+	1. Open Source. Placing on GitHub
+	2. Updated project for the version of Visual Studio 2015
+	3. Added the ability to manage the plugin in the configuration file(scriptfiles/Vodka_SAMP.ini)
+	4. Partially rewritten the code
+	5. Added the ability to automatically detect server's startup file
+	6. Fixed a bug where the server version was not showing in the client 0.3.7
+	(version check was completely rewritten)
+	7. Added showing server version for OS Linux
+	8. The function of checking the nickname is completely rewritten
+	9. Improved server's hook
+	10. Fixed server's hook error
+	11. The function 'IsValidNickName(name[])' was added to the server's include for checking the validity of the nickname
+			Returns: true - nickname is valid, false - nick has not allowed characters
+	12. Optimized and improved code.
+
+Version 4.0
+	1. Renaming the plugin and all its components (include, settings file) from Vodka_SAMP to Advanced-SA-NickName (abbreviated ASAN)
+	2. Added support for C ++ 11 standards in the makefile
+	3. Updated includes for working with INI. The code was rewritten to C ++ (was under C)
+	4. Now the nickname is checked for validity with Regular Expressions (Regex) https://en.wikipedia.org/wiki/Regular_expression
+	5. Checking the nickname for validity using the function 'IsValidNickName(name[])' now also works with Regex.
+	6. The function of checking the nickname 'IsValidNickName(name[])' was moved to the plugin. There is native in server's include
+	7. The bug in the function 'GetPlayerName(..)' in the include was fixed. The bug was that the function did not return the length of the nickname.
+	8. The plugin settings file was changed. It includes the following settings:
+		
+		EnginePlugin
+		- Enable plugin - 1, Disable plugin - 0
+		
+		RegexTemplate
+		- Regex Template (Including case)
+		
+		AllowSpace
+		- Replace the underscore character(_) with the space character( ) - 1, By default - 0
+		- Example. If 'MaxAllowdedSpaces = 1' -> 'John_Connor' will be in server side (In TAB menu) such as 'John Connor' after player connected. DON'T USE SPACES INTO CLIENT SIDE (SA-MP CLIENT WINDOW)! ONLY SERVER SIDE!
+		
+		MaxSpaces
+		- WORKING ONLY, IF `AllowSpace` = 1.
+		- Number of replace the underscore symbols (_) to space symbols ( ). If it's 1, hen the system will replace the symbol only once, another symbols will be missed!
+	
+	9. Some changes in the code, which adds convenience for reading the code to other programmers.
+	
+	To update the plug-in from older versions, it's necessary:
+		1. Delete the settings file 'Vodka_SAMP.ini', the plugin 'Vodka_SAMP.dll' (.so on Linux), the include 'Vodka_SAMP.inc'
+		2. Put a new plugin, include in the necessary folders.
+		3. In your GameMode/FilterScripts, change the 'include "Vodka_SAMP"' to 'include ASAN"'
+		4. In the server.cfg, in the line 'plugins', change 'Vodka_SAMP' to 'ASAN'
+		
+Version 5.0 - The biggest and, maybe, the last plugin's update.
+	1. Added the ability to connect with the same nickname that is present on the server, with the ability to control the number of repeated nicknames, and also the character register of the repeated nick;
+	2. Setting the length of the nickname no longer works through Regex. To do this, use the configuration file;
+	3. Added the ability to change the length of the nickname in SA: MP. Now you can set in the configuration file the minimum and maximum length of the nickname (from 1 to 24 characters);
+	4. Added the ability to replace ALL underscore symbols with space symbols. In the previous version there was a replacement limit. You can configure it in the configuration file;
+	5. Added English language into plugin's logs. In the configuration file there is a choice of needed language;
+	6. The plugin's include is now divided into 2 parts. 1 - ASAN.inc for GameMode and ASAN_FS.inc for FilterScripts;
+	7. Added hooks for OnPlayerConnect, OnPlayerDisconnect, SetPlayerName;
+	8. Updated include file, added 2 hook to work with point 1;
+	9. native function IsValidNickName(name[]) is replaced with ASAN_IsValidNickName(name[]) because of incompatibility with the YSF plugin;
+		If you use this function from previous plugin's version, be sure to rename it into your GameMode/FilterScipts; 
+	10. The 'AllowSpace' and 'MaxSpaces' settings from the configuration file are replaced with 'MaxAllowdedSpaces';
+	11. The native function IsValidNickName(name[]) depends entirely on your configuration file;
+	12. Updated files for working with INI;
+	13. Fixed a possible error in reading the INI file;
+	14. In the previous version, when the hook was disabled, the plugin terminated. Now you can use all hooks at once, and any one;
+	15. All memory addresses are also automatically found, which guarantees operation on all modern versions of SA:MP;
+	16. Plugin's release is available in 2 languages;
+	17. Regular expressions was corrected. Checking the length of the nickname was removed. Added new templates;
+	18. The plugin works and will work (hopefully) on any version of SA:MP, starting at 0.3C R5;
+	19. The configuration file was renamed from 'ASAN.ini' to 'ASAN_Config.ini';
+	20. The configuration file 'ASAN_Config.ini' now looks like this:
+		
+			Max_Players = 1000
+				- Max players of your server. DON'T SET meaning less, than was setted in your server.cfg.
+				- By default it's = 1000
+
+			Language = 0
+				- Plugin's log language. 0 - English, 1 - Russian
+
+			EnableValidNickHOOK = 1
+				- Enable symbols check hook - 1, Disable symbols check hook - 0
+
+			RegexTemplate = ([а-яА-ЯёЁ0-9\[\]\_\$\=\(\)\@\.]+)|([a-zA-Z0-9\[\]\_\$\=\(\)\@\.]+)
+				- Regex Template! Don't include nick's length!
+				- Some Regex templates you can find in plugin's archive
+
+			MaxAllowdedSpaces = 0
+				- Number of replace the underscore symbols(_) to space symbols( ), By Default it's = 0
+				- (-1 - no restrictions(all symbols will be replaced), 0 - disabled(By default))
+				- Example. If 'MaxAllowdedSpaces = 1' -> 'John_Connor' will be in server side (In TAB menu) such as 'John Connor' after player connected.
+				- Another underscore symbols will be missing (John_Connor_Jr will be John Connor_Jr)
+				- Be careful while using this function with your DataBase!
+				- DON'T USE SPACES INTO CLIENT SIDE (SA-MP CLIENT WINDOW)! ONLY SERVER SIDE!
+
+			EnableNickLengthHOOK = 1
+				- Enable nick length number hook - 1. Disable nick length number hook - 0.
+
+			MinNickLength = 3
+				- Minimum length of NickName. By default it's = 3
+				- This should be > 0!
+
+			MaxNickLength = 20
+				- Maximum length of NickName. By default it's = 20
+				- Do not increase it under than 24!
+
+			EnableRepeatedNicksHOOK = 1
+				- Enable repeated nicknames hook - 1, Disable repeated nicknames hook - 0
+				- Two or more players can use same NickNames
+
+			IgnoreRepeatedNicksCase = 1
+				- When set to - 1, the case doesn't matter - nickname 'heLLo' is the same as 'Hello'. When - 0, they're not the same.
+				- Example. If 'IgnoreRepeatedNicksCase = 1' you can use same NickName (Example. Alex and ALEX) in any case at the same time. If it's = 0, only one case can be used (who was connected first)
+				- Attention! This function was tested only with Russian and English symbols! Nobody knows how it will work with another language!
+
+			MaxRepeatedNicks = -1
+				- The number of repeated nicknames (-1 - no restrictions, 0 - is the same, as 'EnableRepeatedNicksHOOK = 0')
+
+	We recommend to use the current version of the plugin!	
+	
+	
+Credits:
+	[KrYpToDeN]
+Thanks:
+	Many thanks to [EC] Zero for help with finding memory addresses and implementing automatic address finding for the plug-in version 1.0!
+	Many thanks to Enrique_Heimonen for help in testing!
+	Many thanks to ZiGGi for help in finding the memory address for repeated nicknames!	
+Official links to discuss the plugin
+	Portals in Russian:
+		http://lightcode.ru/showthread.php?t=113118
+		http://pawno.su/showthread.php?t=114245
+		http://forum.sa-mp.com/showthread.php?t=617993
+	Portals in English:	
+		http://forum.sa-mp.com/showthread.php?t=647518
+The current version of the plugin, incude, and also the Russian version you can find on the official page of the plugin:
+	https://github.com/KrYpToDeN/Advanced-SA-NickName
+	
+Your suggestions for further development of the plugin, detection of any bugs, crashes you can write in Issue on GitHub:	
+	https://github.com/KrYpToDeN/Advanced-SA-NickName/issues

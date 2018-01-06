@@ -24,16 +24,7 @@
     <ClInclude Include="Source\SDK\plugincommon.h">
       <Filter>Source\SDK</Filter>
     </ClInclude>
-    <ClInclude Include="Source\INI\ini.h">
-      <Filter>Source\INI</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\INI\INIReader.h">
-      <Filter>Source\INI</Filter>
-    </ClInclude>
     <ClInclude Include="Source\functions.h">
-      <Filter>Source</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\includes.h">
       <Filter>Source</Filter>
     </ClInclude>
     <ClInclude Include="Source\main.h">
@@ -42,19 +33,28 @@
     <ClInclude Include="Source\os_info.h">
       <Filter>Source</Filter>
     </ClInclude>
+    <ClInclude Include="Source\pawn_hook.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\INI\ini.h">
+      <Filter>Source\INI</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\INI\INIReader.h">
+      <Filter>Source\INI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\SDK\amxplugin.cpp">
       <Filter>Source\SDK</Filter>
     </ClCompile>
-    <ClCompile Include="Source\INI\ini.cpp">
-      <Filter>Source\INI</Filter>
+    <ClCompile Include="Source\main.cpp">
+      <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="Source\INI\INIReader.cpp">
       <Filter>Source\INI</Filter>
     </ClCompile>
-    <ClCompile Include="Source\main.cpp">
-      <Filter>Source</Filter>
+    <ClCompile Include="Source\INI\ini.cpp">
+      <Filter>Source\INI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

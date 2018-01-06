@@ -1,0 +1,101 @@
+Advanced-SA-NickName v5.0 - The installation instructions.
+
+1. Put files ASAN.dll and ASAN.so into plugins folder;
+2. Put files ASAN.inc and ASAN_FS.inc from plugin's folder 'pawno/include' into folder 'pawno/include' of your server;
+3. In 'server.cfg' file, in line 'plugins' write ASAN for Windows or ASAN.so for Linux;
+4. To install the plugin and to work it correctly:
+		4.1) Into your GameMode after line
+				#include <a_samp>
+			it's necessary to write the include
+				#include "ASAN"
+		4.2) Into all of your FilterScripts after line
+				#include <a_samp>
+			it's necessary to write the include
+				#include "ASAN_FS"		
+5. After that it's necessary to recompile all your GameMode/FilterScripts;
+6. Into include ASAN_FS.inc there are next hooks/natives for correctly plugin work. DO NOT CHANGE THEIR CONTENTS!
+		6.1) native ASAN_HOOK_GetPlayerName(name[]);
+		6.2) stock ASAN_INCLUDE_GetPlayerName(playerid, name[], length);
+		6.3) stock ASAN_INCLUDE_SetPlayerName(playerid, name[]);
+		
+7. Include adds NATIVEs for using into Pawn (into your GameMode):
+		7.1) native ASAN_IsValidNickName(name[])
+			- Verifies the validity of the entered nickname, based on the settings in your 'ASAN_Config.ini';
+			- Returns 'true;' in case of correctness of the entered nickname;
+			- Returns 'false;' in case of not correctness of the entered nickname;
+			
+		7.2) native ASAN_GetMinNickLength()
+			- Returns the minimum length of the nickname, based on the settings in your 'ASAN_Config.ini';
+			
+		7.3) native ASAN_GetMaxNickLength()
+			- Returns the maximum length of the nickname, based on the settings in your 'ASAN_Config.ini';
+			
+8. The configuration file 'ASAN_Config.ini' will automatically appear in the 'scriptfiles' folder after the first start. It contains:
+	It's necessary to restart the server after any editing of the settings file.
+
+		Max_Players = 1000
+			- Max players of your server. DON'T SET meaning less, than was setted in your server.cfg.
+			- By default it's = 1000
+
+		Language = 0
+			- Plugin's log language. 0 - English, 1 - Russian
+
+		EnableValidNickHOOK = 1
+			- Enable symbols check hook - 1, Disable symbols check hook - 0
+
+		RegexTemplate = ([а-яА-ЯёЁ0-9\[\]\_\$\=\(\)\@\.]+)|([a-zA-Z0-9\[\]\_\$\=\(\)\@\.]+)
+			- Regex Template! Don't include nick's length!
+			- Some Regex templates you can find in plugin's archive
+
+		MaxAllowdedSpaces = 0
+			- Number of replace the underscore symbols(_) to space symbols( ), By Default it's = 0
+			- (-1 - no restrictions(all symbols will be replaced), 0 - disabled(By default))
+			- Example. If 'MaxAllowdedSpaces = 1' -> 'John_Connor' will be in server side (In TAB menu) such as 'John Connor' after player connected.
+			- Another underscore symbols will be missing (John_Connor_Jr will be John Connor_Jr)
+			- Be careful while using this function with your DataBase!
+			- DON'T USE SPACES INTO CLIENT SIDE (SA-MP CLIENT WINDOW)! ONLY SERVER SIDE!
+
+		EnableNickLengthHOOK = 1
+			- Enable nick length number hook - 1. Disable nick length number hook - 0.
+
+		MinNickLength = 3
+			- Minimum length of NickName. By default it's = 3
+			- This should be > 0!
+
+		MaxNickLength = 20
+			- Maximum length of NickName. By default it's = 20
+			- Do not increase it under than 24!
+
+		EnableRepeatedNicksHOOK = 1
+			- Enable repeated nicknames hook - 1, Disable repeated nicknames hook - 0
+			- Two or more players can use same NickNames
+
+		IgnoreRepeatedNicksCase = 1
+			- When set to - 1, the case doesn't matter - nickname 'heLLo' is the same as 'Hello'. When - 0, they're not the same.
+			- Example. If 'IgnoreRepeatedNicksCase = 1' you can use same NickName (Example. Alex and ALEX) in any case at the same time. If it's = 0, only one case can be used (who was connected first)
+			- Attention! This function was tested only with Russian and English symbols! Nobody knows how it will work with another language!
+
+		MaxRepeatedNicks = -1
+			- The number of repeated nicknames (-1 - no restrictions, 0 - is the same, as 'EnableRepeatedNicksHOOK = 0')
+		
+
+9. Run the server, read the log, enjoy :)
+
+Credits:
+	[KrYpToDeN]
+Thanks:
+	Many thanks to [EC] Zero for help with finding memory addresses and implementing automatic address finding for the plug-in version 1.0!
+	Many thanks to Enrique_Heimonen for help in testing!
+	Many thanks to ZiGGi for help in finding the memory address for repeated nicknames!	
+Official links to discuss the plugin
+	Portals in Russian:
+		http://lightcode.ru/showthread.php?t=113118
+		http://pawno.su/showthread.php?t=114245
+		http://forum.sa-mp.com/showthread.php?t=617993
+	Portals in English:	
+		http://forum.sa-mp.com/showthread.php?t=647518
+The current version of the plugin, incude, and also the Russian version you can find on the official page of the plugin:
+	https://github.com/KrYpToDeN/Advanced-SA-NickName
+	
+Your suggestions for further development of the plugin, detection of any bugs, crashes you can write in Issue on GitHub:	
+	https://github.com/KrYpToDeN/Advanced-SA-NickName/issues

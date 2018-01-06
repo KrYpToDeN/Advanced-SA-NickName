@@ -1,0 +1,61 @@
+->>The length of the NickName is set in the ASAN_Config.ini file!
+
+Allowed to use any case in NickName
+	1. Only Russian or only English symbols, and also other symbols,
+	allowed in SA:MP.
+		([а-яА-ЯёЁ0-9\[\]\_\$\=\(\)\@\.]+)|([a-zA-Z0-9\[\]\_\$\=\(\)\@\.]+)
+
+	2. Russian and English symbols, and also other symbols,
+	allowed in SA:MP.
+		[а-яА-ЯёЁa-zA-Z0-9\[\]\_\$\=\(\)\@\.]+
+
+	3. Only Russian symbols, and also other symbols,
+	allowed in SA:MP.
+		[а-яА-ЯёЁ0-9\[\]\_\$\=\(\)\@\.]+
+
+	4. Only English symbols, and also other symbols,
+	allowed in SA:MP.
+		[a-zA-Z0-9\[\]\_\$\=\(\)\@\.]+
+
+	
+Allowed to use only one case in NickName
+	1. Only Russian or only English symbols, and also other symbols,
+	allowed in SA:MP.
+		(([А-ЯЁ0-9\[\]\_\$\=\(\)\@\.]+)|([A-Z0-9\[\]\_\$\=\(\)\@\.]+))|(([а-яё0-9\[\]\_\$\=\(\)\@\.]+)|([a-z0-9\[\]\_\$\=\(\)\@\.]+))
+
+	2. Russian and English symbols, and also other symbols,
+	allowed in SA:MP.
+		([А-ЯЁA-Z0-9\[\]\_\$\=\(\)\@\.]+)|([а-яёa-z0-9\[\]\_\$\=\(\)\@\.]+)
+
+	3. Only Russian symbols, and also other symbols,
+	allowed in SA:MP.
+		([А-ЯЁ0-9\[\]\_\$\=\(\)\@\.]+)|([а-яё0-9\[\]\_\$\=\(\)\@\.]+)
+
+	4. Only English symbols, and also other symbols,
+	allowed in SA:MP.
+		([A-Z0-9\[\]\_\$\=\(\)\@\.]+)|([a-z0-9\[\]\_\$\=\(\)\@\.]+)
+	
+	
+- By these examples you can create any template yourself!
+- In standard templates, only those symbols are used that are used by default in SA:MP + Russian.
+- If you decided to add new symbols (Example ~), then this is only at your own risk. Test their work properly with the database and other functions.
+- To test your Regex, you can use different online services, for example https://regex101.com/
+
+Credits:
+	[KrYpToDeN]
+Thanks:
+	Many thanks to [EC] Zero for help with finding memory addresses and implementing automatic address finding for the plug-in version 1.0!
+	Many thanks to Enrique_Heimonen for help in testing!
+	Many thanks to ZiGGi for help in finding the memory address for repeated nicknames!	
+Official links to discuss the plugin
+	Portals in Russian:
+		http://lightcode.ru/showthread.php?t=113118
+		http://pawno.su/showthread.php?t=114245
+		http://forum.sa-mp.com/showthread.php?t=617993
+	Portals in English:	
+		http://forum.sa-mp.com/showthread.php?t=647518
+The current version of the plugin, incude, and also the Russian version you can find on the official page of the plugin:
+	https://github.com/KrYpToDeN/Advanced-SA-NickName
+	
+Your suggestions for further development of the plugin, detection of any bugs, crashes you can write in Issue on GitHub:	
+	https://github.com/KrYpToDeN/Advanced-SA-NickName/issues

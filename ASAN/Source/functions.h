@@ -1,61 +1,207 @@
 #pragma once
 
 #pragma pack(push, 1)
-
 struct JUMP_DATA
 {
 	BYTE jmp; // 0xE9 ; JMP
 	DWORD adr;
 	BYTE nop; // 0x90 ; NOP
 };
-
 #pragma pack(pop)
 
-struct Settings
+struct Plugin_Config_Structure
 {
-	bool EnginePlugin;
+	int Max_Players;
+	int Language;
+}Plugin_Config;
+
+struct ValidNick_Structure
+{
+	int EnableValidNickHOOK;
 	std::regex RegexTemplate;
-	bool AllowSpace;
-	int MaxSpaces;
-} Config;
+	int MaxAllowdedSpaces;
+} ValidNick_Config;
+
+struct NickLength_Structure
+{
+	int EnableNickLengthHOOK;
+	int MinNickLength;
+	int MaxNickLength;
+} NickLength_Config;
+
+struct RepeatedNicks_Structure
+{
+	int EnableRepeatedNicksHOOK;
+	int IgnoreRepeatedNicksCase;
+	int MaxRepeatedNicks;
+} RepeatedNicks_Config;
+
+struct PlayerConnectionInfo
+{
+	int PlayerName[MAX_PLAYER_NAME + 1];
+	bool Connected;
+}PlayerInfo[MAX_PLAYERS];
 
 size_t CalcDisp(void* lpFirst, void* lpSecond)
 {
 	return reinterpret_cast<char*>(lpSecond) - (reinterpret_cast<char*>(lpFirst) + 5);
 }
 
-bool Unlock(void *address, int len)
+bool UnblockMemory(void *address, int len)
 {
 #if (defined(WIN32) || defined(_WIN32)) && defined(_MSC_VER)
 	DWORD
 		oldp;
-	// Shut up the warnings :D
 	return !!VirtualProtect(address, len, PAGE_EXECUTE_READWRITE, &oldp);
-#else // Linux
+#else
 	return !mprotect((void*)(((int)address / PAGESIZE) * PAGESIZE), len, PROT_WRITE | PROT_READ | PROT_EXEC);
 #endif
 }
 
-int checkNickname(char *name)
+int GetPlayerNameINT_Length(int name[])
 {
-	if (std::regex_match(name, Config.RegexTemplate))
+	int rezult = 0;
+	for (int i = 0; i < NickLength_Config.MaxNickLength; i++)
 	{
-		if (Config.MaxSpaces > 0 && Config.AllowSpace)
+		if (name[i] == EOF)
+			break;
+		rezult++;
+	}
+	return rezult;
+}
+
+bool IsNonCaseSymbolsMatch(int player_name[], char *connected_name)
+{
+	int str_lenght = GetPlayerNameINT_Length(player_name);
+	if (str_lenght != strlen(connected_name))
+		return false;
+
+	for (int i = 0; i < str_lenght; i++)
+	{
+		int sym_str2 = (int)*connected_name;
+		if (sym_str2 < 0)
+			sym_str2 = (256 + sym_str2);
+		connected_name++;
+		if (player_name[i] != sym_str2 && (player_name[i] - 32) != sym_str2 && player_name[i] != (sym_str2 - 32) && (player_name[i] - 16) != sym_str2 && player_name[i] != (sym_str2 - 16))
+			return false;
+	}
+	return true;
+}
+
+bool IsCaseSymbolsMatch(int player_name[], char *connected_name)
+{
+	int str_lenght = GetPlayerNameINT_Length(player_name);
+	if (str_lenght != strlen(connected_name))
+		return false;
+
+	for (int i = 0; i < str_lenght; i++)
+	{
+		int sym_str2 = (int)*connected_name;
+		if (sym_str2 < 0)
+			sym_str2 = (256 + sym_str2);
+		connected_name++;
+
+		if (player_name[i] != sym_str2)
+			return false;
+	}
+	return true;
+}
+
+int HOOK_ValidNickName(char *name) // Thanks to [EC]Zero for helping with this hook
+{
+	int name_length = strlen(name);
+	if (name_length < NickLength_Config.MinNickLength || name_length > NickLength_Config.MaxNickLength)
+		return 1; // DON'T Allow Connection
+
+	if (std::regex_match(name, ValidNick_Config.RegexTemplate))
+	{
+		if (ValidNick_Config.MaxAllowdedSpaces > 0 || ValidNick_Config.MaxAllowdedSpaces == -1)
 		{
 			int total_spaces = 0;
-			while (Config.MaxSpaces != total_spaces && *name)
+			while (*name)
 			{
+				if (ValidNick_Config.MaxAllowdedSpaces == total_spaces)
+					break;
+
 				if (*name == '_')
 				{
 					*name = ' ';
-					total_spaces++;
+					if(ValidNick_Config.MaxAllowdedSpaces > 0)
+						total_spaces++;
 				}
 				name++;
 			}
 		}
-		return 0;
+		return 0; // Allow Connection
 	}
-	return 1;
+	return 1; // DON'T Allow Connection
+}
+
+bool IsMaxRepeatedNicksError(char *name)
+{
+	if (RepeatedNicks_Config.MaxRepeatedNicks != ASAN_DEFAULT_MAX_REPEATED_NICKS)
+	{
+		int _max_repeated_nicks = 0;
+		for (int i = 0; i < Plugin_Config.Max_Players; i++)
+		{
+			if (PlayerInfo[i].Connected == true)
+			{
+				if (IsCaseSymbolsMatch(PlayerInfo[i].PlayerName, name) == true || IsNonCaseSymbolsMatch(PlayerInfo[i].PlayerName, name) == true)
+				{
+					_max_repeated_nicks++;
+					if (_max_repeated_nicks > RepeatedNicks_Config.MaxRepeatedNicks)
+						return true;
+				}
+			}
+		}
+	}
+	return false;
+}
+
+bool IsIgnoreRepeatedNicksCaseError(char *name)
+{
+	if (RepeatedNicks_Config.IgnoreRepeatedNicksCase == 0)
+	{
+		for (int i = 0; i < Plugin_Config.Max_Players; i++)
+		{
+			if (PlayerInfo[i].Connected == true)
+			{
+				if (IsCaseSymbolsMatch(PlayerInfo[i].PlayerName, name) == false && IsNonCaseSymbolsMatch(PlayerInfo[i].PlayerName, name) == true)
+				{
+					return true;
+				}
+			}
+		}
+	}
+	return false;
+}
+
+#if (defined(WIN32) || defined(_WIN32)) && defined(_MSC_VER)
+int __stdcall HOOK_RepeatedNicks(char *name)
+#else
+int __cdecl HOOK_RepeatedNicks(int, char *name)
+#endif
+{
+	bool check_free_id = false;
+	for (int i = 0; i < Plugin_Config.Max_Players; i++)
+	{
+		if (PlayerInfo[i].Connected == false)
+		{
+			check_free_id = true;
+			break;
+		}
+	}
+
+	if(check_free_id == false)
+		return 1; // DON'T Allow Connection
+
+	if (IsMaxRepeatedNicksError(name))
+		return 1;  // DON'T Allow Connection
+
+	if(IsIgnoreRepeatedNicksCaseError(name))
+		return 1;  // DON'T Allow Connection
+
+	return 0; // Allow Connection
 }
 
 int GetFileSize()
@@ -83,10 +229,47 @@ int GetFileSize()
 	return file_size;
 }
 
-bool CheckMemmory(char*check, char*mas, int mas_length)
+bool GetNickLengthAddresses(char *address, char *&MinimumNickLength, char *&MaximumNickLength)
+{
+	char *_MinimumNickLength = 0;
+	char *_MaximumNickLength = 0;
+
+	int status = 0;
+	for (int i = 0; i < MAX_NICKNAME_LENGTH_ADRESSES; i++)
+	{
+		if (NickLength_Addresses[i] == 0x3C)
+		{
+			status++;
+			if(_MinimumNickLength == 0)
+				_MinimumNickLength = (address + 1);
+			else if (_MaximumNickLength == 0)
+			{
+				_MaximumNickLength = (address + 1);
+				break;
+			}
+		}
+		address++;
+	}
+
+	MinimumNickLength = _MinimumNickLength;
+	MaximumNickLength = _MaximumNickLength;
+
+	if (status != 2)
+		return false;
+	else return true;
+}
+
+bool CheckMemmory(char*check, char*mas, int mas_length, bool include_null = true) // If 'include_null = false' - Don't check NULL number
 {
 	for (int i = 0; i < mas_length; i++)
 	{
+		if (include_null == false && *mas == NULL) // Don't check NULL number
+		{
+			check++;
+			mas++;
+			continue;
+		}
+
 		if (*check != *mas)
 			return false;
 		check++;
@@ -95,43 +278,24 @@ bool CheckMemmory(char*check, char*mas, int mas_length)
 	return true;
 }
 
-inline void ChangeSymbols(cell &symbol)
+void ShowErrorMessage(char hook_name[], int error_code)
 {
-	if (symbol < 0)
-	{
-		symbol += 256;
-	}
+	if (Plugin_Config.Language == 0)
+		logprintf("\t[ASAN | %s | ERROR]:\tError code - 0x%x*\t->Missing..", hook_name, error_code);
+	else
+		logprintf("\t[ASAN | %s | ÎØÈÁÊÀ]:\tÊîä îøèáêè - 0x%x*\t->Ïðîïóñêàåì..", hook_name, error_code);
 }
 
 void ShowCopiratesInfo()
 {
-	logprintf("\t[ASAN]: https://github.com/KrYpToDeN/Advanced-SA-NickName");
-	logprintf("\t---------------------------------------------------------\n\n");
-}
-
-cell AMX_NATIVE_CALL hook_GetName(AMX *amx, cell *params)
-{
-	cell *destination = NULL;
-	amx_GetAddr(amx, params[1], &destination);
-
-	int len = 0;
-
-	while (destination[len])
+	if (Plugin_Config.Language == 0)
 	{
-		ChangeSymbols(destination[len]);
-		len++;
+		logprintf("\t[ASAN | WEBSITE]:\thttps://github.com/KrYpToDeN/Advanced-SA-NickName");
+		logprintf("\t------------------------------------------------------------------\n\n");
 	}
-	return 1;
-}
-
-cell AMX_NATIVE_CALL CheckValidNickName(AMX *amx, cell *params)
-{
-	char* name = NULL;
-	amx_StrParam(amx, params[1], name);
-	if (name != NULL)
+	else
 	{
-		if (!std::regex_match(name, Config.RegexTemplate))
-			return false;
+		logprintf("\t[ASAN | ÑÀÉÒ]:\t\thttps://github.com/KrYpToDeN/Advanced-SA-NickName");
+		logprintf("\t------------------------------------------------------------------\n\n");
 	}
-	return true;
 }

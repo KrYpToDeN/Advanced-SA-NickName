@@ -20,11 +20,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\functions.h" />
-    <ClInclude Include="Source\includes.h" />
     <ClInclude Include="Source\INI\ini.h" />
     <ClInclude Include="Source\INI\INIReader.h" />
     <ClInclude Include="Source\main.h" />
     <ClInclude Include="Source\os_info.h" />
+    <ClInclude Include="Source\pawn_hook.h" />
     <ClInclude Include="Source\SDK\amx\amx.h" />
     <ClInclude Include="Source\SDK\plugin.h" />
     <ClInclude Include="Source\SDK\plugincommon.h" />
