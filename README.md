@@ -23,7 +23,7 @@ The archive contains plugins for various OS, includes for Pawn code, installatio
 
 #### License
 
-This project is licensed under the MIT License - see the [mit](LICENSE.md) file for details
+This project is licensed under the MIT License - see the [mit](LICENSE) file for details
 
 ###### Pleasant use.
 
