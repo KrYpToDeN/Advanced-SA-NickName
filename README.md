@@ -30,7 +30,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ###### Yours Respectfully, [KrYpToDeN]!
 
 # Advanced-SA-NickName v5.0 - Лучший плагин Русских Ников. Версия 5.0 будет реализована скоро.
-## Русский текст | Russian Text
+## Русский текст | Russian Text.
 #### Расширенные настройки для Вашего никнейма:
 
 1. Вы можете использовать свои символы в никнеймах (установите правила через регулярные выражения (Regex)).
