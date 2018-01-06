@@ -52,7 +52,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 1. На Windows ОС используйте Visual Studio (Лучше версия >= 2017).
 2. На Linux ОС используйте GCC версию >= 4.9. Заходите в 'source' папку. И выполните - make.
 
-#### License
+#### Лицензия
 
 Этот проект находится под MIT Лицензией - посмотрите [LICENSE](LICENSE) файл для получения более подробной информации!
 
