@@ -1,4 +1,4 @@
-# Advanced-SA-NickName v5.0 - The best NickName plugin. Version 5.0 will be released soon.
+# Advanced-SA-NickName v5.0 - The best NickName plugin.
 ## English Text | Англоязычный текст.
 #### Advanced settings for your nickname:
 
@@ -21,7 +21,7 @@ The archive contains plugins for various OS, includes for Pawn code, installatio
 1. On Windows OS use Visual Studio (The better version is >= 2017).
 2. On Linux OS use GCC version >= 4.9. Go to 'source' folder. And execute - make.
 
-#### License
+#### License:
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details!
 
@@ -29,7 +29,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ###### Yours Respectfully, [KrYpToDeN]!
 
-# Advanced-SA-NickName v5.0 - Лучший плагин Русских Ников. Версия 5.0 будет реализована скоро.
+# Advanced-SA-NickName v5.0 - Лучший плагин Русских Ников.
 ## Русский текст | Russian Text.
 #### Расширенные настройки для Вашего никнейма:
 
@@ -52,7 +52,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 1. На Windows ОС используйте Visual Studio (Лучше версия >= 2017).
 2. На Linux ОС используйте GCC версию >= 4.9. Заходите в 'source' папку. И выполните - make.
 
-#### Лицензия
+#### Лицензия:
 
 Этот проект находится под MIT Лицензией - посмотрите [LICENSE](LICENSE) файл для получения более подробной информации!
 
