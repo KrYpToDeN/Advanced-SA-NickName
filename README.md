@@ -2,10 +2,10 @@
 ## English Text | Англоязычный текст.
 #### Advanced settings for your nickname:
 
-1. You can use your own symbols in nicknames (set your rules by Regex templates).
-2. You can use repeated nicknames (more than one same nicknames) on your server.
-3. You can use nickname length, different from standart (1 - 24 symbols).
-4. You can replace the underscore symbols (_) to space symbols ( ) before players connect.
+1. Using your own symbols in nicknames (set your rules by Regex templates).
+2. Using repeated nicknames (more than one same nicknames) on your server.
+3. Using nickname length, different from standart (1 - 24 symbols).
+4. Replacing the underscore symbols (_) to space symbols ( ) before players connect.
 5. You do not need to change memory addresses when upgrading to a new version of the SA:MP server. The plugin will do everything for you.
 6. Any manipulations with plugin take place in the configuration file scriptfiles/ASAN_Config.ini (creating at the first plugin start).
 7. There are lot's of extra functions for your nickname in the configuration file.
@@ -33,10 +33,10 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## Русский текст | Russian Text.
 #### Расширенные настройки для Вашего никнейма:
 
-1. Вы можете использовать свои символы в никнеймах (установите правила через регулярные выражения (Regex)).
-2. Вы можете использовать повторные никнеймы (более чем один одинаковый ник) на Вашем сервере.
-3. ВЫ можете использовать длину ника, отличную от стандартной (1 - 24 символа).
-4. Вы можете заменять символы нижнего подчеркивания (_) на символы пробела ( ) перед подключением игрока.
+1. Используйте свои символы в никнеймах (установите правила через регулярные выражения (Regex)).
+2. Используйте повторные никнеймы (более чем один одинаковый ник) на Вашем сервере.
+3. Используйте длину ника, отличную от стандартной (1 - 24 символа).
+4. Заменяйте символы нижнего подчеркивания (_) на символы пробела ( ) перед подключением игрока.
 5. Вам не нужно менять адреса памяти при переходе на новую версию SA:MP сервера. Плагин всё сделает за Вас.
 6. Любые манипуляции с плагином происходят в файле конфигураций scriptfiles/ASAN_Config.ini (создается при первом запуске плагина).
 7. Есть множество дополнительных функций для Вашего никнейма в файле конфигураций.
