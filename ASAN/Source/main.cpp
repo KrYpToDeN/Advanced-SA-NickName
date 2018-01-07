@@ -284,7 +284,7 @@ MaxRepeatedNicks = %d\n\
 				{
 
 #if !(defined(WIN32) || defined(_WIN32)) && !defined(_MSC_VER) // Linux min check is a bit another.
-					*NickLength_Min_Func_ADDR++;
+					*NickLength_Min_Func_ADDR = *NickLength_Min_Func_ADDR + 1;
 #endif
 					if (Plugin_Config.Language == 0)
 						logprintf("\t->>[ASAN | ValidNick - MinLength]:\tMemory address '0x%x' was found. (Value = %d)", NickLength_Min_Func_ADDR, *NickLength_Min_Func_ADDR);
@@ -300,13 +300,15 @@ MaxRepeatedNicks = %d\n\
 					{
 						*NickLength_Min_Func_ADDR = NickLength_Config.MinNickLength;
 
-#if !(defined(WIN32) || defined(_WIN32)) && !defined(_MSC_VER) // Linux min check is a bit another.
-						*NickLength_Min_Func_ADDR--;
-#endif
 						if (Plugin_Config.Language == 0)
 							logprintf("\t->>[ASAN | ValidNick - MinLength_SET]:\tValue was changed to %d from ASAN_Config.ini", *NickLength_Min_Func_ADDR);
 						else
 							logprintf("\t->>[ASAN | ValidNick - MinLength_SET]:\tЗначение было изменено на %d из ASAN_Config.ini", *NickLength_Min_Func_ADDR);
+
+#if !(defined(WIN32) || defined(_WIN32)) && !defined(_MSC_VER) // Linux min check is a bit another.
+						*NickLength_Min_Func_ADDR = *NickLength_Min_Func_ADDR - 1;
+#endif
+
 					}
 
 					if (NickLength_Config.MaxNickLength != *NickLength_Max_Func_ADDR)
