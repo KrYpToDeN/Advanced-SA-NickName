@@ -56,7 +56,7 @@ Version 4.0
 	
 	9. Some changes in the code, which adds convenience for reading the code to other programmers.
 	
-	To update the plug-in from older versions, it's necessary:
+	To update the plugin from older versions, it's necessary:
 		1. Delete the settings file 'Vodka_SAMP.ini', the plugin 'Vodka_SAMP.dll' (.so on Linux), the include 'Vodka_SAMP.inc'
 		2. Put a new plugin, include in the necessary folders.
 		3. In your GameMode/FilterScripts, change the 'include "Vodka_SAMP"' to 'include ASAN"'
@@ -136,7 +136,7 @@ Version 5.0 - The biggest and, maybe, the last plugin's update.
 Credits:
 	[KrYpToDeN]
 Thanks:
-	Many thanks to [EC] Zero for help with finding memory addresses and implementing automatic address finding for the plug-in version 1.0!
+	Many thanks to [EC]Zero for help with finding memory addresses and implementing automatic address finding for the plugin version 1.0!
 	Many thanks to Enrique_Heimonen for help in testing!
 	Many thanks to ZiGGi for help in finding the memory address for repeated nicknames!	
 Official links to discuss the plugin

@@ -40,7 +40,7 @@
 	Credits:
 		[KrYpToDeN]
 	Thanks:
-		Many thanks to [EC] Zero for help with finding memory addresses and implementing automatic address finding for the plug-in version 1.0!
+		Many thanks to [EC]Zero for help with finding memory addresses and implementing automatic address finding for the plugin version 1.0!
 		Many thanks to Enrique_Heimonen for help in testing!
 		Many thanks to ZiGGi for help in finding the memory address for repeated nicknames!	
 	Official links to discuss the plugin
@@ -162,7 +162,7 @@ stock ASAN_INCLUDE_SetPlayerName(playerid, name[])
 	Credits:
 		[KrYpToDeN]
 	Thanks:
-		Many thanks to [EC] Zero for help with finding memory addresses and implementing automatic address finding for the plug-in version 1.0!
+		Many thanks to [EC]Zero for help with finding memory addresses and implementing automatic address finding for the plugin version 1.0!
 		Many thanks to Enrique_Heimonen for help in testing!
 		Many thanks to ZiGGi for help in finding the memory address for repeated nicknames!	
 	Official links to discuss the plugin
