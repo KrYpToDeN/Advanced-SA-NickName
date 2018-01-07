@@ -49,7 +49,7 @@
 			http://pawno.su/showthread.php?t=114245
 			http://forum.sa-mp.com/showthread.php?t=617993
 		Portals in English:	
-			http://forum.sa-mp.com/showthread.php?t=647518
+			http://forum.sa-mp.com/showthread.php?t=647528
 	The current version of the plugin, incude, and also the Russian version you can find on the official page of the plugin:
 		https://github.com/KrYpToDeN/Advanced-SA-NickName
 		
@@ -171,7 +171,7 @@ stock ASAN_INCLUDE_SetPlayerName(playerid, name[])
 			http://pawno.su/showthread.php?t=114245
 			http://forum.sa-mp.com/showthread.php?t=617993
 		Portals in English:	
-			http://forum.sa-mp.com/showthread.php?t=647518
+			http://forum.sa-mp.com/showthread.php?t=647528
 	The current version of the plugin, incude, and also the Russian version you can find on the official page of the plugin:
 		https://github.com/KrYpToDeN/Advanced-SA-NickName
 		

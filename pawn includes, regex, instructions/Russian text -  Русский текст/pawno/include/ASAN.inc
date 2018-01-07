@@ -38,7 +38,7 @@
 			http://pawno.su/showthread.php?t=114245
 			http://forum.sa-mp.com/showthread.php?t=617993
 		Порталы на английском языке:	
-			http://forum.sa-mp.com/showthread.php?t=647518
+			http://forum.sa-mp.com/showthread.php?t=647528
 	Актуальную версия плагина, инклуда, а также англоязычную версию Вы можете найти на официальной странице плагина:
 		https://github.com/KrYpToDeN/Advanced-SA-NickName
 		
@@ -155,7 +155,7 @@ forward TEST_OnPlayerDisconnect(playerid);
 			http://pawno.su/showthread.php?t=114245
 			http://forum.sa-mp.com/showthread.php?t=617993
 		Порталы на английском языке:	
-			http://forum.sa-mp.com/showthread.php?t=647518
+			http://forum.sa-mp.com/showthread.php?t=647528
 	Актуальную версия плагина, инклуда, а также англоязычную версию Вы можете найти на официальной странице плагина:
 		https://github.com/KrYpToDeN/Advanced-SA-NickName
 		
