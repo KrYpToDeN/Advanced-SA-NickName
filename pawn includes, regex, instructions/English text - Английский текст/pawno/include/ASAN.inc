@@ -22,9 +22,9 @@
 		
 	Into include there are next hooks/natives for correctly plugin work. DO NOT CHANGE THEIR CONTENTS!
 		1) native ASAN_HOOK_ConnectPlayer(playerid, name[]);
-		2) native ASAN_HOOK_DisconnectPlayer(playerid);
+		2) native ASAN_HOOK_DisconnectPlayer(playerid, reason);
 		3) public OnPlayerConnect(playerid);
-		4) public OnPlayerDisconnect(playerid);
+		4) public OnPlayerDisconnect(playerid, reason);
 				
 	Credits:
 		[KrYpToDeN]
@@ -70,7 +70,7 @@
 
 // HOOKS. Only for plugin. Don't use it in your pawn code.
 native ASAN_HOOK_ConnectPlayer(playerid, name[]);
-native ASAN_HOOK_DisconnectPlayer(playerid);
+native ASAN_HOOK_DisconnectPlayer(playerid, reason);
 
 public OnPlayerConnect(playerid)
 {
@@ -95,13 +95,13 @@ public OnPlayerConnect(playerid)
 forward TEST_OnPlayerConnect(playerid);
 
 
-public OnPlayerDisconnect(playerid)
+public OnPlayerDisconnect(playerid, reason)
 {
-	ASAN_HOOK_DisconnectPlayer(playerid);
+	ASAN_HOOK_DisconnectPlayer(playerid, reason);
 	
 	if(funcidx("TEST_OnPlayerDisconnect") != -1)
 	{
-		return CallLocalFunction("TEST_OnPlayerDisconnect", "d", playerid);
+		return CallLocalFunction("TEST_OnPlayerDisconnect", "dd", playerid, reason);
 	}
 	return 1;
 }
@@ -113,7 +113,7 @@ public OnPlayerDisconnect(playerid)
 #endif
 #define OnPlayerDisconnect TEST_OnPlayerDisconnect
 
-forward TEST_OnPlayerDisconnect(playerid);
+forward TEST_OnPlayerDisconnect(playerid, reason);
 
 // English Version - Англоязычная версия
 
@@ -139,9 +139,9 @@ forward TEST_OnPlayerDisconnect(playerid);
 		
 	Into include there are next hooks/natives for correctly plugin work. DO NOT CHANGE THEIR CONTENTS!
 		1) native ASAN_HOOK_ConnectPlayer(playerid, name[]);
-		2) native ASAN_HOOK_DisconnectPlayer(playerid);
+		2) native ASAN_HOOK_DisconnectPlayer(playerid, reason);
 		3) public OnPlayerConnect(playerid);
-		4) public OnPlayerDisconnect(playerid);
+		4) public OnPlayerDisconnect(playerid, reason);
 				
 	Credits:
 		[KrYpToDeN]

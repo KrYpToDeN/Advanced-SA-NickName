@@ -22,9 +22,9 @@
 		
 	В инклуде присутствуют следующие хуки/natives для корректной работы плагина. НЕ ИЗМЕНЯЙТЕ ИХ СОДЕРЖИМОЕ.
 		1) native ASAN_HOOK_ConnectPlayer(playerid, name[]);
-		2) native ASAN_HOOK_DisconnectPlayer(playerid);
+		2) native ASAN_HOOK_DisconnectPlayer(playerid, reason);
 		3) public OnPlayerConnect(playerid);
-		4) public OnPlayerDisconnect(playerid);
+		4) public OnPlayerDisconnect(playerid, reason);
 				
 	Создатель:
 		[KrYpToDeN]
@@ -70,7 +70,7 @@
 
 // HOOKS. Только для плагина. Не используйте их в своем Pawn коде.
 native ASAN_HOOK_ConnectPlayer(playerid, name[]);
-native ASAN_HOOK_DisconnectPlayer(playerid);
+native ASAN_HOOK_DisconnectPlayer(playerid, reason);
 
 public OnPlayerConnect(playerid)
 {
@@ -95,13 +95,13 @@ public OnPlayerConnect(playerid)
 forward TEST_OnPlayerConnect(playerid);
 
 
-public OnPlayerDisconnect(playerid)
+public OnPlayerDisconnect(playerid, reason)
 {
-	ASAN_HOOK_DisconnectPlayer(playerid);
+	ASAN_HOOK_DisconnectPlayer(playerid, reason);
 	
 	if(funcidx("TEST_OnPlayerDisconnect") != -1)
 	{
-		return CallLocalFunction("TEST_OnPlayerDisconnect", "d", playerid);
+		return CallLocalFunction("TEST_OnPlayerDisconnect", "dd", playerid, reason);
 	}
 	return 1;
 }
@@ -113,7 +113,7 @@ public OnPlayerDisconnect(playerid)
 #endif
 #define OnPlayerDisconnect TEST_OnPlayerDisconnect
 
-forward TEST_OnPlayerDisconnect(playerid);
+forward TEST_OnPlayerDisconnect(playerid, reason);
 
 // Russian Version - Русская версия
 
@@ -139,9 +139,9 @@ forward TEST_OnPlayerDisconnect(playerid);
 		
 	В инклуде присутствуют следующие хуки/natives для корректной работы плагина. НЕ ИЗМЕНЯЙТЕ ИХ СОДЕРЖИМОЕ.
 		1) native ASAN_HOOK_ConnectPlayer(playerid, name[]);
-		2) native ASAN_HOOK_DisconnectPlayer(playerid);
+		2) native ASAN_HOOK_DisconnectPlayer(playerid, reason);
 		3) public OnPlayerConnect(playerid);
-		4) public OnPlayerDisconnect(playerid);
+		4) public OnPlayerDisconnect(playerid, reason);
 				
 	Создатель:
 		[KrYpToDeN]
