@@ -80,7 +80,7 @@ bool IsNonCaseSymbolsMatch(int player_name[], char *connected_name)
 	{
 		int sym_str2 = (int)*connected_name;
 		if (sym_str2 < 0)
-			sym_str2 = (256 + sym_str2);
+			sym_str2 &= 0xFF;
 		connected_name++;
 		if (player_name[i] != sym_str2 && (player_name[i] - 32) != sym_str2 && player_name[i] != (sym_str2 - 32) && (player_name[i] - 16) != sym_str2 && player_name[i] != (sym_str2 - 16))
 			return false;
@@ -98,7 +98,7 @@ bool IsCaseSymbolsMatch(int player_name[], char *connected_name)
 	{
 		int sym_str2 = (int)*connected_name;
 		if (sym_str2 < 0)
-			sym_str2 = (256 + sym_str2);
+			sym_str2 &= 0xFF;
 		connected_name++;
 
 		if (player_name[i] != sym_str2)
@@ -283,7 +283,7 @@ void ShowErrorMessage(char hook_name[], int error_code)
 	if (Plugin_Config.Language == 0)
 		logprintf("\t[ASAN | %s | ERROR]:\tError code - 0x%x*\t->Missing..", hook_name, error_code);
 	else
-		logprintf("\t[ASAN | %s | Œÿ»¡ ¿]:\t Ó‰ Ó¯Ë·ÍË - 0x%x*\t->œÓÔÛÒÍ‡ÂÏ..", hook_name, error_code);
+		logprintf("\t[ASAN | %s | √é√ò√à√Å√ä√Ä]:\t√ä√Æ√§ √Æ√∏√®√°√™√® - 0x%x*\t->√è√∞√Æ√Ø√≥√±√™√†√•√¨..", hook_name, error_code);
 }
 
 void ShowCopiratesInfo()
@@ -295,7 +295,7 @@ void ShowCopiratesInfo()
 	}
 	else
 	{
-		logprintf("\t[ASAN | —¿…“]:\t\thttps://github.com/KrYpToDeN/Advanced-SA-NickName");
+		logprintf("\t[ASAN | √ë√Ä√â√í]:\t\thttps://github.com/KrYpToDeN/Advanced-SA-NickName");
 		logprintf("\t------------------------------------------------------------------\n\n");
 	}
 }

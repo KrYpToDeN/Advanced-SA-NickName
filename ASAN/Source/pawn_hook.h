@@ -12,7 +12,7 @@ cell AMX_NATIVE_CALL ASAN_HOOK_ConnectPlayer(AMX* amx, cell* params)
 	{
 		int sym_str = (int)name[i];
 		if (sym_str < 0)
-			sym_str = (256 + sym_str);
+			sym_str &= 0xFF;
 		PlayerInfo[playerID].PlayerName[i] = sym_str;
 	}
 	PlayerInfo[playerID].PlayerName[name_strlen] = EOF;
@@ -41,7 +41,7 @@ cell AMX_NATIVE_CALL ASAN_HOOK_GetPlayerName(AMX *amx, cell *params)
 	{
 		if (destination[len] < 0)
 		{
-			destination[len] += 256;
+			destination[len] &= 0xFF;
 		}
 		len++;
 	}
