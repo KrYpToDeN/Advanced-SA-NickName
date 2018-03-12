@@ -4,64 +4,6 @@ Starting with version 4.0, thanks to Regex, there is support for any symbols in 
 Starting with version 5.0, the plugin's translation is released in Russian and English languages!
 
 
-Version 1.0
-	1. Created plugin Vodka_SAMP
-	2. Automatic memory address search. Works absolutely on any server's version
-	3. Recognizing the server version (Windows only)
-	2. Source code is closed.
-
-Version 2.0
-	1. Added use of Russian letters ё-Ё
-	2. Fixed bug with length of nickname. Do not forget to add include in all FilterScipts and Gamemode.
-	
-Version 3.0
-	1. Open Source. Placing on GitHub
-	2. Updated project for the version of Visual Studio 2015
-	3. Added the ability to manage the plugin in the configuration file(scriptfiles/Vodka_SAMP.ini)
-	4. Partially rewritten the code
-	5. Added the ability to automatically detect server's startup file
-	6. Fixed a bug where the server version was not showing in the client 0.3.7
-	(version check was completely rewritten)
-	7. Added showing server version for OS Linux
-	8. The function of checking the nickname is completely rewritten
-	9. Improved server's hook
-	10. Fixed server's hook error
-	11. The function 'IsValidNickName(name[])' was added to the server's include for checking the validity of the nickname
-			Returns: true - nickname is valid, false - nick has not allowed characters
-	12. Optimized and improved code.
-
-Version 4.0
-	1. Renaming the plugin and all its components (include, settings file) from Vodka_SAMP to Advanced-SA-NickName (abbreviated ASAN)
-	2. Added support for C ++ 11 standards in the makefile
-	3. Updated includes for working with INI. The code was rewritten to C ++ (was under C)
-	4. Now the nickname is checked for validity with Regular Expressions (Regex) https://en.wikipedia.org/wiki/Regular_expression
-	5. Checking the nickname for validity using the function 'IsValidNickName(name[])' now also works with Regex.
-	6. The function of checking the nickname 'IsValidNickName(name[])' was moved to the plugin. There is native in server's include
-	7. The bug in the function 'GetPlayerName(..)' in the include was fixed. The bug was that the function did not return the length of the nickname.
-	8. The plugin settings file was changed. It includes the following settings:
-		
-		EnginePlugin
-		- Enable plugin - 1, Disable plugin - 0
-		
-		RegexTemplate
-		- Regex Template (Including case)
-		
-		AllowSpace
-		- Replace the underscore character(_) with the space character( ) - 1, By default - 0
-		- Example. If 'MaxAllowdedSpaces = 1' -> 'John_Connor' will be in server side (In TAB menu) such as 'John Connor' after player connected. DON'T USE SPACES INTO CLIENT SIDE (SA-MP CLIENT WINDOW)! ONLY SERVER SIDE!
-		
-		MaxSpaces
-		- WORKING ONLY, IF `AllowSpace` = 1.
-		- Number of replace the underscore symbols (_) to space symbols ( ). If it's 1, hen the system will replace the symbol only once, another symbols will be missed!
-	
-	9. Some changes in the code, which adds convenience for reading the code to other programmers.
-	
-	To update the plugin from older versions, it's necessary:
-		1. Delete the settings file 'Vodka_SAMP.ini', the plugin 'Vodka_SAMP.dll' (.so on Linux), the include 'Vodka_SAMP.inc'
-		2. Put a new plugin, include in the necessary folders.
-		3. In your GameMode/FilterScripts, change the 'include "Vodka_SAMP"' to 'include ASAN"'
-		4. In the server.cfg, in the line 'plugins', change 'Vodka_SAMP' to 'ASAN'
-		
 Version 5.0 - The biggest and, maybe, the last plugin's update.
 	1. Added the ability to connect with the same nickname that is present on the server, with the ability to control the number of repeated nicknames, and also the character register of the repeated nick;
 	2. Setting the length of the nickname no longer works through Regex. To do this, use the configuration file;
@@ -131,6 +73,64 @@ Version 5.0 - The biggest and, maybe, the last plugin's update.
 				- The number of repeated nicknames (-1 - no restrictions, 0 - is the same, as 'EnableRepeatedNicksHOOK = 0')
 
 	We recommend to use the current version of the plugin!	
+
+Version 4.0
+	1. Renaming the plugin and all its components (include, settings file) from Vodka_SAMP to Advanced-SA-NickName (abbreviated ASAN)
+	2. Added support for C ++ 11 standards in the makefile
+	3. Updated includes for working with INI. The code was rewritten to C ++ (was under C)
+	4. Now the nickname is checked for validity with Regular Expressions (Regex) https://en.wikipedia.org/wiki/Regular_expression
+	5. Checking the nickname for validity using the function 'IsValidNickName(name[])' now also works with Regex.
+	6. The function of checking the nickname 'IsValidNickName(name[])' was moved to the plugin. There is native in server's include
+	7. The bug in the function 'GetPlayerName(..)' in the include was fixed. The bug was that the function did not return the length of the nickname.
+	8. The plugin settings file was changed. It includes the following settings:
+		
+		EnginePlugin
+		- Enable plugin - 1, Disable plugin - 0
+		
+		RegexTemplate
+		- Regex Template (Including case)
+		
+		AllowSpace
+		- Replace the underscore character(_) with the space character( ) - 1, By default - 0
+		- Example. If 'MaxAllowdedSpaces = 1' -> 'John_Connor' will be in server side (In TAB menu) such as 'John Connor' after player connected. DON'T USE SPACES INTO CLIENT SIDE (SA-MP CLIENT WINDOW)! ONLY SERVER SIDE!
+		
+		MaxSpaces
+		- WORKING ONLY, IF `AllowSpace` = 1.
+		- Number of replace the underscore symbols (_) to space symbols ( ). If it's 1, hen the system will replace the symbol only once, another symbols will be missed!
+	
+	9. Some changes in the code, which adds convenience for reading the code to other programmers.
+	
+	To update the plugin from older versions, it's necessary:
+		1. Delete the settings file 'Vodka_SAMP.ini', the plugin 'Vodka_SAMP.dll' (.so on Linux), the include 'Vodka_SAMP.inc'
+		2. Put a new plugin, include in the necessary folders.
+		3. In your GameMode/FilterScripts, change the 'include "Vodka_SAMP"' to 'include ASAN"'
+		4. In the server.cfg, in the line 'plugins', change 'Vodka_SAMP' to 'ASAN'
+
+Version 3.0
+	1. Open Source. Placing on GitHub
+	2. Updated project for the version of Visual Studio 2015
+	3. Added the ability to manage the plugin in the configuration file(scriptfiles/Vodka_SAMP.ini)
+	4. Partially rewritten the code
+	5. Added the ability to automatically detect server's startup file
+	6. Fixed a bug where the server version was not showing in the client 0.3.7
+	(version check was completely rewritten)
+	7. Added showing server version for OS Linux
+	8. The function of checking the nickname is completely rewritten
+	9. Improved server's hook
+	10. Fixed server's hook error
+	11. The function 'IsValidNickName(name[])' was added to the server's include for checking the validity of the nickname
+			Returns: true - nickname is valid, false - nick has not allowed characters
+	12. Optimized and improved code.
+	
+Version 2.0
+	1. Added use of Russian letters ё-Ё
+	2. Fixed bug with length of nickname. Do not forget to add include in all FilterScipts and Gamemode.
+	
+Version 1.0
+	1. Created plugin Vodka_SAMP
+	2. Automatic memory address search. Works absolutely on any server's version
+	3. Recognizing the server version (Windows only)
+	2. Source code is closed.
 	
 	
 Credits:
