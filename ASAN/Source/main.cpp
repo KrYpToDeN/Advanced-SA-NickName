@@ -23,8 +23,8 @@ PLUGIN_EXPORT bool PLUGIN_CALL Load(void **ppData)
 	else
 	{
 		logprintf("\n\n\t-------------------Advanced SA NickName (ASAN)--------------------");
-		logprintf("\t[ASAN | Запуск]:\tПлагин v%s by [KrYpToDeN]", PLUGIN_VERSION);
-		logprintf("\t[ASAN | Загрузка]:\tПлагин загружается..\n");
+		logprintf("\t[ASAN | Р—Р°РїСѓСЃРє]:\tРџР»Р°РіРёРЅ v%s by [KrYpToDeN]", PLUGIN_VERSION);
+		logprintf("\t[ASAN | Р—Р°РіСЂСѓР·РєР°]:\tРџР»Р°РіРёРЅ Р·Р°РіСЂСѓР¶Р°РµС‚СЃСЏ..\n");
 	}
 
 	INIReader reader("scriptfiles/ASAN_Config.ini");
@@ -33,7 +33,7 @@ PLUGIN_EXPORT bool PLUGIN_CALL Load(void **ppData)
 		if (Plugin_Config.Language == 0)
 			logprintf("\t[ASAN | SETTINGS]:\tCreating file `ASAN_Config.ini` in `scriptfiles` folder\n");
 		else
-			logprintf("\t[ASAN | НАСТРОЙКИ]:\tСоздаю файл `ASAN_Config.ini` в папке `scriptfiles`\n");
+			logprintf("\t[ASAN | РќРђРЎРўР РћР™РљР]:\tРЎРѕР·РґР°СЋ С„Р°Р№Р» `ASAN_Config.ini` РІ РїР°РїРєРµ `scriptfiles`\n");
 
 		FILE *SettingFile;
 		SettingFile = fopen("scriptfiles/ASAN_Config.ini", "wt");
@@ -43,7 +43,7 @@ PLUGIN_EXPORT bool PLUGIN_CALL Load(void **ppData)
 			if (Plugin_Config.Language == 0)
 				logprintf("\t[ASAN | ERROR]:\tMissing `scriptfiles` folder or there are no rights to write to the disk.\n\t->Aborting..");
 			else
-				logprintf("\t[ASAN | ОШИБКА]:\tОтсутствует папка `scriptfiles` или же отсутствуют права для записи на диск.\n\t->Сворачиваемся..");
+				logprintf("\t[ASAN | РћРЁРР‘РљРђ]:\tРћС‚СЃСѓС‚СЃС‚РІСѓРµС‚ РїР°РїРєР° `scriptfiles` РёР»Рё Р¶Рµ РѕС‚СЃСѓС‚СЃС‚РІСѓСЋС‚ РїСЂР°РІР° РґР»СЏ Р·Р°РїРёСЃРё РЅР° РґРёСЃРє.\n\t->РЎРІРѕСЂР°С‡РёРІР°РµРјСЃСЏ..");
 
 			ShowCopiratesInfo();
 			return false;
@@ -127,43 +127,43 @@ MaxRepeatedNicks = %d\n\
 			sprintf(ftext, "\
 [ASAN_Plugin_Config]\n\n\
 Max_Players = %d\n\
-;Максимальное количество игроков Вашего сервера. НЕ УСТАНАВЛИВАЙТЕ значение меньше, чем установлено в Вашем server.cfg.\n\
-;По умолчанию = %d\n\n\
+;РњР°РєСЃРёРјР°Р»СЊРЅРѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ РёРіСЂРѕРєРѕРІ Р’Р°С€РµРіРѕ СЃРµСЂРІРµСЂР°. РќР• РЈРЎРўРђРќРђР’Р›РР’РђР™РўР• Р·РЅР°С‡РµРЅРёРµ РјРµРЅСЊС€Рµ, С‡РµРј СѓСЃС‚Р°РЅРѕРІР»РµРЅРѕ РІ Р’Р°С€РµРј server.cfg.\n\
+;РџРѕ СѓРјРѕР»С‡Р°РЅРёСЋ = %d\n\n\
 Language = %d\n\
-;Язык в логах плагина. 0 - Английский, 1 - Русский\n\n\n\
+;РЇР·С‹Рє РІ Р»РѕРіР°С… РїР»Р°РіРёРЅР°. 0 - РђРЅРіР»РёР№СЃРєРёР№, 1 - Р СѓСЃСЃРєРёР№\n\n\n\
 [ASAN_ValidNick_Settings]\n\n\
 EnableValidNickHOOK = %d\n\
-;Включить хук проверки символов - 1, Отключить хук проверки символов - 0\n\n\
+;Р’РєР»СЋС‡РёС‚СЊ С…СѓРє РїСЂРѕРІРµСЂРєРё СЃРёРјРІРѕР»РѕРІ - 1, РћС‚РєР»СЋС‡РёС‚СЊ С…СѓРє РїСЂРѕРІРµСЂРєРё СЃРёРјРІРѕР»РѕРІ - 0\n\n\
 RegexTemplate = %s\n\
-;Шаблон регулярного выражения (Regex)! Не включайте в шаблон длину ника!\n\
-;Некоторые шаблоны Вы можете найти в архиве плагина\n\n\
+;РЁР°Р±Р»РѕРЅ СЂРµРіСѓР»СЏСЂРЅРѕРіРѕ РІС‹СЂР°Р¶РµРЅРёСЏ (Regex)! РќРµ РІРєР»СЋС‡Р°Р№С‚Рµ РІ С€Р°Р±Р»РѕРЅ РґР»РёРЅСѓ РЅРёРєР°!\n\
+;РќРµРєРѕС‚РѕСЂС‹Рµ С€Р°Р±Р»РѕРЅС‹ Р’С‹ РјРѕР¶РµС‚Рµ РЅР°Р№С‚Рё РІ Р°СЂС…РёРІРµ РїР»Р°РіРёРЅР°\n\n\
 MaxAllowdedSpaces = %d\n\
-;Количество замен символов нижнего подчеркивания(_) на символы пробела( )\n\
-;(-1 - нет ограничений(все символы будут заменены), 0 - отключено(По умолчанию))\n\
-;Пример. Если 'MaxAllowdedSpaces = 1' -> 'John_Connor' будет на серверной стороне (В TAB меню) как 'John Connor' после подключения игрока.\n\
-;Другие символы нижнего подчеркивания будут пропущены (John_Connor_Jr станет John Connor_Jr)\n\
-;Будьте осторожны, использую данную функцию с Вашей базой данных!\n\
-;НЕ ИСПОЛЬЗУЙТЕ ПРОБЕЛЫ НА СТОРОНЕ КЛИЕНТА (ОКНО SA-MP)! ТОЛЬКО СЕРВЕРНАЯ СТОРОНА!\n\n\n\
+;РљРѕР»РёС‡РµСЃС‚РІРѕ Р·Р°РјРµРЅ СЃРёРјРІРѕР»РѕРІ РЅРёР¶РЅРµРіРѕ РїРѕРґС‡РµСЂРєРёРІР°РЅРёСЏ(_) РЅР° СЃРёРјРІРѕР»С‹ РїСЂРѕР±РµР»Р°( )\n\
+;(-1 - РЅРµС‚ РѕРіСЂР°РЅРёС‡РµРЅРёР№(РІСЃРµ СЃРёРјРІРѕР»С‹ Р±СѓРґСѓС‚ Р·Р°РјРµРЅРµРЅС‹), 0 - РѕС‚РєР»СЋС‡РµРЅРѕ(РџРѕ СѓРјРѕР»С‡Р°РЅРёСЋ))\n\
+;РџСЂРёРјРµСЂ. Р•СЃР»Рё 'MaxAllowdedSpaces = 1' -> 'John_Connor' Р±СѓРґРµС‚ РЅР° СЃРµСЂРІРµСЂРЅРѕР№ СЃС‚РѕСЂРѕРЅРµ (Р’ TAB РјРµРЅСЋ) РєР°Рє 'John Connor' РїРѕСЃР»Рµ РїРѕРґРєР»СЋС‡РµРЅРёСЏ РёРіСЂРѕРєР°.\n\
+;Р”СЂСѓРіРёРµ СЃРёРјРІРѕР»С‹ РЅРёР¶РЅРµРіРѕ РїРѕРґС‡РµСЂРєРёРІР°РЅРёСЏ Р±СѓРґСѓС‚ РїСЂРѕРїСѓС‰РµРЅС‹ (John_Connor_Jr СЃС‚Р°РЅРµС‚ John Connor_Jr)\n\
+;Р‘СѓРґСЊС‚Рµ РѕСЃС‚РѕСЂРѕР¶РЅС‹, РёСЃРїРѕР»СЊР·СѓСЋ РґР°РЅРЅСѓСЋ С„СѓРЅРєС†РёСЋ СЃ Р’Р°С€РµР№ Р±Р°Р·РѕР№ РґР°РЅРЅС‹С…!\n\
+;РќР• РРЎРџРћР›Р¬Р—РЈР™РўР• РџР РћР‘Р•Р›Р« РќРђ РЎРўРћР РћРќР• РљР›РР•РќРўРђ (РћРљРќРћ SA-MP)! РўРћР›Р¬РљРћ РЎР•Р Р’Р•Р РќРђРЇ РЎРўРћР РћРќРђ!\n\n\n\
 [ASAN_NickLength_Settings]\n\n\
 EnableNickLengthHOOK = %d\n\
-;Включить хук длины символов ника - 1. Отключить хук длины символов ника - 0.\n\n\
+;Р’РєР»СЋС‡РёС‚СЊ С…СѓРє РґР»РёРЅС‹ СЃРёРјРІРѕР»РѕРІ РЅРёРєР° - 1. РћС‚РєР»СЋС‡РёС‚СЊ С…СѓРє РґР»РёРЅС‹ СЃРёРјРІРѕР»РѕРІ РЅРёРєР° - 0.\n\n\
 MinNickLength = %d\n\
-;Минимальная длина НикНейма. По умолчанию = %d\n\
-;Значение должно быть > 0!\n\n\
+;РњРёРЅРёРјР°Р»СЊРЅР°СЏ РґР»РёРЅР° РќРёРєРќРµР№РјР°. РџРѕ СѓРјРѕР»С‡Р°РЅРёСЋ = %d\n\
+;Р—РЅР°С‡РµРЅРёРµ РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ > 0!\n\n\
 MaxNickLength = %d\n\
-;Максимальная длина НикНейма. По умолчанию = %d\n\
-;Не увеличивайте это зачение больше чем %d!\n\n\n\
+;РњР°РєСЃРёРјР°Р»СЊРЅР°СЏ РґР»РёРЅР° РќРёРєРќРµР№РјР°. РџРѕ СѓРјРѕР»С‡Р°РЅРёСЋ = %d\n\
+;РќРµ СѓРІРµР»РёС‡РёРІР°Р№С‚Рµ СЌС‚Рѕ Р·Р°С‡РµРЅРёРµ Р±РѕР»СЊС€Рµ С‡РµРј %d!\n\n\n\
 [ASAN_RepeatedNicks_Settings]\n\n\
 EnableRepeatedNicksHOOK = %d\n\
-;Включить хук повторных ников - 1, Отключить хук повторных ников - 0\n\
-;Два или более игроков могут использовать одинаковые НикНеймы\n\n\
+;Р’РєР»СЋС‡РёС‚СЊ С…СѓРє РїРѕРІС‚РѕСЂРЅС‹С… РЅРёРєРѕРІ - 1, РћС‚РєР»СЋС‡РёС‚СЊ С…СѓРє РїРѕРІС‚РѕСЂРЅС‹С… РЅРёРєРѕРІ - 0\n\
+;Р”РІР° РёР»Рё Р±РѕР»РµРµ РёРіСЂРѕРєРѕРІ РјРѕРіСѓС‚ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ РѕРґРёРЅР°РєРѕРІС‹Рµ РќРёРєРќРµР№РјС‹\n\n\
 IgnoreRepeatedNicksCase = %d\n\
-;Когда установлено - 1, регистр не проверяется - ник 'приВет' тоже самое, что и 'Привет'. Когда - 0, они считаются разными.\n\
-;Пример. Если 'IgnoreRepeatedNicksCase = 1' Вы можете использовать тот же самый НикНейм (Пример. Алекс и АЛЕКС) в любом регистре одновременно. Если это = 0, только один регистр может быть использован (тот, что подключился первым)\n\
-;Внимание! Эта функция была протестирована только с Русскими и Английскими символами! Никто не знает, как она будет работать с другим языком!\n\n\
+;РљРѕРіРґР° СѓСЃС‚Р°РЅРѕРІР»РµРЅРѕ - 1, СЂРµРіРёСЃС‚СЂ РЅРµ РїСЂРѕРІРµСЂСЏРµС‚СЃСЏ - РЅРёРє 'РїСЂРёР’РµС‚' С‚РѕР¶Рµ СЃР°РјРѕРµ, С‡С‚Рѕ Рё 'РџСЂРёРІРµС‚'. РљРѕРіРґР° - 0, РѕРЅРё СЃС‡РёС‚Р°СЋС‚СЃСЏ СЂР°Р·РЅС‹РјРё.\n\
+;РџСЂРёРјРµСЂ. Р•СЃР»Рё 'IgnoreRepeatedNicksCase = 1' Р’С‹ РјРѕР¶РµС‚Рµ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ С‚РѕС‚ Р¶Рµ СЃР°РјС‹Р№ РќРёРєРќРµР№Рј (РџСЂРёРјРµСЂ. РђР»РµРєСЃ Рё РђР›Р•РљРЎ) РІ Р»СЋР±РѕРј СЂРµРіРёСЃС‚СЂРµ РѕРґРЅРѕРІСЂРµРјРµРЅРЅРѕ. Р•СЃР»Рё СЌС‚Рѕ = 0, С‚РѕР»СЊРєРѕ РѕРґРёРЅ СЂРµРіРёСЃС‚СЂ РјРѕР¶РµС‚ Р±С‹С‚СЊ РёСЃРїРѕР»СЊР·РѕРІР°РЅ (С‚РѕС‚, С‡С‚Рѕ РїРѕРґРєР»СЋС‡РёР»СЃСЏ РїРµСЂРІС‹Рј)\n\
+;Р’РЅРёРјР°РЅРёРµ! Р­С‚Р° С„СѓРЅРєС†РёСЏ Р±С‹Р»Р° РїСЂРѕС‚РµСЃС‚РёСЂРѕРІР°РЅР° С‚РѕР»СЊРєРѕ СЃ Р СѓСЃСЃРєРёРјРё Рё РђРЅРіР»РёР№СЃРєРёРјРё СЃРёРјРІРѕР»Р°РјРё! РќРёРєС‚Рѕ РЅРµ Р·РЅР°РµС‚, РєР°Рє РѕРЅР° Р±СѓРґРµС‚ СЂР°Р±РѕС‚Р°С‚СЊ СЃ РґСЂСѓРіРёРј СЏР·С‹РєРѕРј!\n\n\
 MaxRepeatedNicks = %d\n\
-;Количество повторных НикНеймов (-1 - нет ограничений, 0 - тоже самое, что и 'EnableRepeatedNicksHOOK = 0')\n\n\n\n\
-;Если у Вас есть какие - либо вопросы, пожалуйста напишите мне в Issue на GitHub - https://github.com/KrYpToDeN/Advanced-SA-NickName/issues",
+;РљРѕР»РёС‡РµСЃС‚РІРѕ РїРѕРІС‚РѕСЂРЅС‹С… РќРёРєРќРµР№РјРѕРІ (-1 - РЅРµС‚ РѕРіСЂР°РЅРёС‡РµРЅРёР№, 0 - С‚РѕР¶Рµ СЃР°РјРѕРµ, С‡С‚Рѕ Рё 'EnableRepeatedNicksHOOK = 0')\n\n\n\n\
+;Р•СЃР»Рё Сѓ Р’Р°СЃ РµСЃС‚СЊ РєР°РєРёРµ - Р»РёР±Рѕ РІРѕРїСЂРѕСЃС‹, РїРѕР¶Р°Р»СѓР№СЃС‚Р° РЅР°РїРёС€РёС‚Рµ РјРЅРµ РІ Issue РЅР° GitHub - https://github.com/KrYpToDeN/Advanced-SA-NickName/issues",
 			Plugin_Config.Max_Players, ASAN_DEFAULT_MAX_PLAYERS, Plugin_Config.Language,
 			ValidNick_Config.EnableValidNickHOOK, ASAN_DEFAULT_REGEX_TEMPLATE, ValidNick_Config.MaxAllowdedSpaces,
 			NickLength_Config.EnableNickLengthHOOK, NickLength_Config.MinNickLength, ASAN_DEFAULT_MIN_NICK_LENGTH, NickLength_Config.MaxNickLength, ASAN_DEFAULT_MAX_NICK_LENGTH, MAX_PLAYER_NAME,
@@ -214,7 +214,7 @@ MaxRepeatedNicks = %d\n\
 		if (Plugin_Config.Language == 0)
 			logprintf("\t[ASAN | ERROR]:\tCan't unblock SA:MP's memory.\n\tWrite into issue in GitHub, please! https://github.com/KrYpToDeN/Advanced-SA-NickName/issues \n\t->Aborting..");
 		else
-			logprintf("\t[ASAN | ОШИБКА]:\tНе могу разблокировать память SA:MP.\n\tНапишите мне в issue на GitHub, пожалуйста! https://github.com/KrYpToDeN/Advanced-SA-NickName/issues \n\t->Сворачиваемся..");
+			logprintf("\t[ASAN | РћРЁРР‘РљРђ]:\tРќРµ РјРѕРіСѓ СЂР°Р·Р±Р»РѕРєРёСЂРѕРІР°С‚СЊ РїР°РјСЏС‚СЊ SA:MP.\n\tРќР°РїРёС€РёС‚Рµ РјРЅРµ РІ issue РЅР° GitHub, РїРѕР¶Р°Р»СѓР№СЃС‚Р°! https://github.com/KrYpToDeN/Advanced-SA-NickName/issues \n\t->РЎРІРѕСЂР°С‡РёРІР°РµРјСЃСЏ..");
 		
 		ShowCopiratesInfo();
 		return false;
@@ -246,7 +246,7 @@ MaxRepeatedNicks = %d\n\
 			if (Plugin_Config.Language == 0)
 				logprintf("\t[ASAN | ValidNick]:\tMemory address '0x%x' was found.", ValidNick_Func_ADDR);
 			else
-				logprintf("\t[ASAN | ValidNick]:\tАдрес памяти '0x%x' был найден.", ValidNick_Func_ADDR);
+				logprintf("\t[ASAN | ValidNick]:\tРђРґСЂРµСЃ РїР°РјСЏС‚Рё '0x%x' Р±С‹Р» РЅР°Р№РґРµРЅ.", ValidNick_Func_ADDR);
 
 			JUMP_DATA* ValidNick_Func = (JUMP_DATA*)ValidNick_Func_ADDR;
 
@@ -268,7 +268,7 @@ MaxRepeatedNicks = %d\n\
 		if (Plugin_Config.Language == 0)
 			logprintf("\t[ASAN | ValidNick]:\tThis hook was disabled in ASAN_Config.ini.\t->Missing.");
 		else
-			logprintf("\t[ASAN | ValidNick]:\tЭтот хук был отключён в ASAN_Config.ini.\t->Пропускаем.");
+			logprintf("\t[ASAN | ValidNick]:\tР­С‚РѕС‚ С…СѓРє Р±С‹Р» РѕС‚РєР»СЋС‡С‘РЅ РІ ASAN_Config.ini.\t->РџСЂРѕРїСѓСЃРєР°РµРј.");
 	}
 
 	if (NickLength_Config.EnableNickLengthHOOK == 1)
@@ -289,12 +289,12 @@ MaxRepeatedNicks = %d\n\
 					if (Plugin_Config.Language == 0)
 						logprintf("\t->>[ASAN | ValidNick - MinLength]:\tMemory address '0x%x' was found. (Value = %d)", NickLength_Min_Func_ADDR, *NickLength_Min_Func_ADDR);
 					else
-						logprintf("\t->>[ASAN | ValidNick - MinLength]:\tАдрес памяти '0x%x' был найден. (Значение = %d)", NickLength_Min_Func_ADDR, *NickLength_Min_Func_ADDR);
+						logprintf("\t->>[ASAN | ValidNick - MinLength]:\tРђРґСЂРµСЃ РїР°РјСЏС‚Рё '0x%x' Р±С‹Р» РЅР°Р№РґРµРЅ. (Р—РЅР°С‡РµРЅРёРµ = %d)", NickLength_Min_Func_ADDR, *NickLength_Min_Func_ADDR);
 
 					if (Plugin_Config.Language == 0)
 						logprintf("\t->>[ASAN | ValidNick - MaxLength]:\tMemory address '0x%x' was found. (Value = %d)", NickLength_Max_Func_ADDR, *NickLength_Max_Func_ADDR);
 					else
-						logprintf("\t->>[ASAN | ValidNick - MaxLength]:\tАдрес памяти '0x%x' был найден. (Значение = %d)", NickLength_Max_Func_ADDR, *NickLength_Max_Func_ADDR);
+						logprintf("\t->>[ASAN | ValidNick - MaxLength]:\tРђРґСЂРµСЃ РїР°РјСЏС‚Рё '0x%x' Р±С‹Р» РЅР°Р№РґРµРЅ. (Р—РЅР°С‡РµРЅРёРµ = %d)", NickLength_Max_Func_ADDR, *NickLength_Max_Func_ADDR);
 
 					if (NickLength_Config.MinNickLength != *NickLength_Min_Func_ADDR)
 					{
@@ -303,7 +303,7 @@ MaxRepeatedNicks = %d\n\
 						if (Plugin_Config.Language == 0)
 							logprintf("\t->>[ASAN | ValidNick - MinLength_SET]:\tValue was changed to %d from ASAN_Config.ini", *NickLength_Min_Func_ADDR);
 						else
-							logprintf("\t->>[ASAN | ValidNick - MinLength_SET]:\tЗначение было изменено на %d из ASAN_Config.ini", *NickLength_Min_Func_ADDR);
+							logprintf("\t->>[ASAN | ValidNick - MinLength_SET]:\tР—РЅР°С‡РµРЅРёРµ Р±С‹Р»Рѕ РёР·РјРµРЅРµРЅРѕ РЅР° %d РёР· ASAN_Config.ini", *NickLength_Min_Func_ADDR);
 
 #if !(defined(WIN32) || defined(_WIN32)) && !defined(_MSC_VER) // Linux min check is a bit another.
 						*NickLength_Min_Func_ADDR = *NickLength_Min_Func_ADDR - 1;
@@ -317,7 +317,7 @@ MaxRepeatedNicks = %d\n\
 						if (Plugin_Config.Language == 0)
 							logprintf("\t->>[ASAN | ValidNick - MaxLength_SET]:\tValue was changed to %d from ASAN_Config.ini", *NickLength_Max_Func_ADDR);
 						else
-							logprintf("\t->>[ASAN | ValidNick - MaxLength_SET]:\tЗначение было изменено на %d из ASAN_Config.ini", *NickLength_Max_Func_ADDR);
+							logprintf("\t->>[ASAN | ValidNick - MaxLength_SET]:\tР—РЅР°С‡РµРЅРёРµ Р±С‹Р»Рѕ РёР·РјРµРЅРµРЅРѕ РЅР° %d РёР· ASAN_Config.ini", *NickLength_Max_Func_ADDR);
 					}
 					break;
 				}
@@ -340,7 +340,7 @@ MaxRepeatedNicks = %d\n\
 		if (Plugin_Config.Language == 0)
 			logprintf("\t[ASAN | NickLength]:\tThis hook was disabled in ASAN_Config.ini.\t->Missing.");
 		else
-			logprintf("\t[ASAN | NickLength]:\tЭтот хук был отключён в ASAN_Config.ini.\t->Пропускаем.");
+			logprintf("\t[ASAN | NickLength]:\tР­С‚РѕС‚ С…СѓРє Р±С‹Р» РѕС‚РєР»СЋС‡С‘РЅ РІ ASAN_Config.ini.\t->РџСЂРѕРїСѓСЃРєР°РµРј.");
 	}
 
 	if (RepeatedNicks_Config.EnableRepeatedNicksHOOK == 1 && RepeatedNicks_Config.MaxRepeatedNicks != 0)
@@ -364,7 +364,7 @@ MaxRepeatedNicks = %d\n\
 			if (Plugin_Config.Language == 0)
 				logprintf("\t[ASAN | RepeatedNicks]:\tMemory address '0x%x' was found.", RepeatedNicks_Func_ADDR);
 			else
-				logprintf("\t[ASAN | RepeatedNicks]:\tАдрес памяти '0x%x' был найден.", RepeatedNicks_Func_ADDR);
+				logprintf("\t[ASAN | RepeatedNicks]:\tРђРґСЂРµСЃ РїР°РјСЏС‚Рё '0x%x' Р±С‹Р» РЅР°Р№РґРµРЅ.", RepeatedNicks_Func_ADDR);
 
 			JUMP_DATA* RepeatedNicks_Func = (JUMP_DATA*)RepeatedNicks_Func_ADDR;
 
@@ -386,7 +386,7 @@ MaxRepeatedNicks = %d\n\
 		if (Plugin_Config.Language == 0)
 			logprintf("\t[ASAN | RepeatedNicks]:\tThis hook was disabled in ASAN_Config.ini.\t->Missing.");
 		else
-			logprintf("\t[ASAN | RepeatedNicks]:\tЭтот хук был отключён в ASAN_Config.ini.\t->Пропускаем.");
+			logprintf("\t[ASAN | RepeatedNicks]:\tР­С‚РѕС‚ С…СѓРє Р±С‹Р» РѕС‚РєР»СЋС‡С‘РЅ РІ ASAN_Config.ini.\t->РџСЂРѕРїСѓСЃРєР°РµРј.");
 	}
 
 	char * version_name = 0;
@@ -410,7 +410,7 @@ MaxRepeatedNicks = %d\n\
 			if (Plugin_Config.Language == 0)
 				logprintf("\t[ASAN | SERVER]:\tThe number of server is - '%s'\n", version_name);
 			else
-				logprintf("\t[ASAN | СЕРВЕР]:\tВерсия сервера - '%s'\n", version_name);
+				logprintf("\t[ASAN | РЎР•Р Р’Р•Р ]:\tР’РµСЂСЃРёСЏ СЃРµСЂРІРµСЂР° - '%s'\n", version_name);
 
 			break;
 		}
@@ -419,14 +419,14 @@ MaxRepeatedNicks = %d\n\
 	if (Plugin_Config.Language == 0)
 		logprintf("\t[ASAN | LOADED]:\tPlugin v%s was started successfully.", PLUGIN_VERSION);
 	else
-		logprintf("\t[ASAN | ЗАГРУЖЕН]:\tПлагин v%s был запущен успешно.", PLUGIN_VERSION);
+		logprintf("\t[ASAN | Р—РђР“Р РЈР–Р•Рќ]:\tРџР»Р°РіРёРЅ v%s Р±С‹Р» Р·Р°РїСѓС‰РµРЅ СѓСЃРїРµС€РЅРѕ.", PLUGIN_VERSION);
 
 	if(error_find_address == true)
 	{
 		if (Plugin_Config.Language == 0)
 			logprintf("\n\t*[ASAN | HELP | CODE - 0x%x]:\tThis code - an error in finding address in SA:MP's memory.\n\tMaybe, the number of your server is lower, then 0.3C R5\n\n", ASAN_ERROR_FIND_ADDRESS);
 		else
-			logprintf("\n\t*[ASAN | ПОМОЩЬ | КОД - 0x%x]:\tДанный код - ошибка нахождения адреса в памяти SA:MP.\n\tВозможно, версия Вашего сервера ниже, чем 0.3C R5\n\n", ASAN_ERROR_HOOK_STRUCTURE);
+			logprintf("\n\t*[ASAN | РџРћРњРћР©Р¬ | РљРћР” - 0x%x]:\tР”Р°РЅРЅС‹Р№ РєРѕРґ - РѕС€РёР±РєР° РЅР°С…РѕР¶РґРµРЅРёСЏ Р°РґСЂРµСЃР° РІ РїР°РјСЏС‚Рё SA:MP.\n\tР’РѕР·РјРѕР¶РЅРѕ, РІРµСЂСЃРёСЏ Р’Р°С€РµРіРѕ СЃРµСЂРІРµСЂР° РЅРёР¶Рµ, С‡РµРј 0.3C R5\n\n", ASAN_ERROR_HOOK_STRUCTURE);
 	}
 
 	if (error_hook_strucrute == true)
@@ -434,7 +434,7 @@ MaxRepeatedNicks = %d\n\
 		if (Plugin_Config.Language == 0)
 			logprintf("\n\t*[ASAN | HELP | CODE - 0x%x]:\tThis code - an error initializing the hook structure!\n\tWrite into issue on GitHub, please! https://github.com/KrYpToDeN/Advanced-SA-NickName/issues \n\n", ASAN_ERROR_FIND_ADDRESS);
 		else
-			logprintf("\n\t*[ASAN | ПОМОЩЬ | КОД - 0x%x]:\tДанный код - ошибка инициализации структуры хука!\n\tНапишите мне в issue на GitHub, пожалуйста! https://github.com/KrYpToDeN/Advanced-SA-NickName/issues \n\n", ASAN_ERROR_HOOK_STRUCTURE);
+			logprintf("\n\t*[ASAN | РџРћРњРћР©Р¬ | РљРћР” - 0x%x]:\tР”Р°РЅРЅС‹Р№ РєРѕРґ - РѕС€РёР±РєР° РёРЅРёС†РёР°Р»РёР·Р°С†РёРё СЃС‚СЂСѓРєС‚СѓСЂС‹ С…СѓРєР°!\n\tРќР°РїРёС€РёС‚Рµ РјРЅРµ РІ issue РЅР° GitHub, РїРѕР¶Р°Р»СѓР№СЃС‚Р°! https://github.com/KrYpToDeN/Advanced-SA-NickName/issues \n\n", ASAN_ERROR_HOOK_STRUCTURE);
 	}
 
 	ShowCopiratesInfo();
@@ -467,5 +467,5 @@ PLUGIN_EXPORT void PLUGIN_CALL Unload()
 	if (Plugin_Config.Language == 0)
 		logprintf("\t[ASAN | UNLOADED]:\tPlugin v%s was unloaded successfully!", PLUGIN_VERSION);
 	else
-		logprintf("\t[ASAN | ВЫГРУЖЕН]:\tПлагин v%s был выгружен успешно!", PLUGIN_VERSION);
+		logprintf("\t[ASAN | Р’Р«Р“Р РЈР–Р•Рќ]:\tРџР»Р°РіРёРЅ v%s Р±С‹Р» РІС‹РіСЂСѓР¶РµРЅ СѓСЃРїРµС€РЅРѕ!", PLUGIN_VERSION);
 }

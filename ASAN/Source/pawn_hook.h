@@ -60,6 +60,9 @@ cell AMX_NATIVE_CALL ASAN_IsValidNickName(AMX *amx, cell *params)
 	if (!std::regex_match(name, ValidNick_Config.RegexTemplate) || name_strlen < NickLength_Config.MinNickLength || name_strlen > NickLength_Config.MaxNickLength || IsMaxRepeatedNicksError(name) || IsIgnoreRepeatedNicksCaseError(name))
 		return false;
 
+	if (IsAllowdedToReplaceUnderscoreSymbols() && !IsValidReplaceSpacesRules(name))
+		return false;
+
 	return true;
 }
 

@@ -107,6 +107,18 @@ bool IsCaseSymbolsMatch(int player_name[], char *connected_name)
 	return true;
 }
 
+bool IsAllowdedToReplaceUnderscoreSymbols()
+{
+	return (ValidNick_Config.MaxAllowdedSpaces > 0 || ValidNick_Config.MaxAllowdedSpaces == -1);
+}
+
+bool IsValidReplaceSpacesRules(char name[]) // Cheking first and last symbols in NickName. It can't = space!
+{
+	if (name[0] == '_' || name[strlen(name) - 1] == '_')
+		return false;
+	return true;
+}
+
 int HOOK_ValidNickName(char *name) // Thanks to [EC]Zero for helping with this hook
 {
 	int name_length = strlen(name);
@@ -115,8 +127,11 @@ int HOOK_ValidNickName(char *name) // Thanks to [EC]Zero for helping with this h
 
 	if (std::regex_match(name, ValidNick_Config.RegexTemplate))
 	{
-		if (ValidNick_Config.MaxAllowdedSpaces > 0 || ValidNick_Config.MaxAllowdedSpaces == -1)
+		if (IsAllowdedToReplaceUnderscoreSymbols())
 		{
+			if(!IsValidReplaceSpacesRules(name))
+				return 1; // DON'T Allow Connection
+
 			int total_spaces = 0;
 			while (*name)
 			{
@@ -283,7 +298,7 @@ void ShowErrorMessage(char hook_name[], int error_code)
 	if (Plugin_Config.Language == 0)
 		logprintf("\t[ASAN | %s | ERROR]:\tError code - 0x%x*\t->Missing..", hook_name, error_code);
 	else
-		logprintf("\t[ASAN | %s | ÎØÈÁÊÀ]:\tÊîä îøèáêè - 0x%x*\t->Ïðîïóñêàåì..", hook_name, error_code);
+		logprintf("\t[ASAN | %s | ОШИБКА]:\tКод ошибки - 0x%x*\t->Пропускаем..", hook_name, error_code);
 }
 
 void ShowCopiratesInfo()
@@ -295,7 +310,7 @@ void ShowCopiratesInfo()
 	}
 	else
 	{
-		logprintf("\t[ASAN | ÑÀÉÒ]:\t\thttps://github.com/KrYpToDeN/Advanced-SA-NickName");
+		logprintf("\t[ASAN | САЙТ]:\thttps://github.com/KrYpToDeN/Advanced-SA-NickName");
 		logprintf("\t------------------------------------------------------------------\n\n");
 	}
 }

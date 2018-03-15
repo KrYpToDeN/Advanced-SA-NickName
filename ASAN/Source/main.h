@@ -6,7 +6,7 @@ logprintf_t logprintf;
 void **ppPluginData;
 extern void *pAMXFunctions;
 
-#define PLUGIN_VERSION								"5.0"
+#define PLUGIN_VERSION								"5.1"
 #define SAMP_VERSION_NAME							", (C)"
 
 #define MAX_PLAYERS									0x3E8
@@ -17,7 +17,7 @@ extern void *pAMXFunctions;
 #define ASAN_DEFAULT_LANGUAGE						0 // 0 - English, 1 - Russian
 
 #define ASAN_DEFAULT_ENABLE_VALID_NICK_HOOK			1
-#define ASAN_DEFAULT_REGEX_TEMPLATE					"([‡-ˇ¿-ﬂ∏®0-9\\[\\]\\_\\$\\=\\(\\)\\@\\.]+)|([a-zA-Z0-9\\[\\]\\_\\$\\=\\(\\)\\@\\.]+)"
+#define ASAN_DEFAULT_REGEX_TEMPLATE					"([–∞-—è–ê-–Ø—ë–Å0-9\\[\\]\\_\\$\\=\\(\\)\\@\\.]+)|([a-zA-Z0-9\\[\\]\\_\\$\\=\\(\\)\\@\\.]+)"
 #define ASAN_DEFAULT_MAX_ALLOWDED_SPACES			0
 
 #define ASAN_DEFAULT_ENABLE_NICK_LENGTH_HOOK		1
