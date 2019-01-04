@@ -1,0 +1,13 @@
+﻿  addresses.cpp
+  functions.cpp
+  ini.cpp
+  INIReader.cpp
+  main.cpp
+  pawn_hook.cpp
+  amxplugin.cpp
+  structures.cpp
+     Создается библиотека C:\Users\net66\Documents\GitHub\Advanced-SA-NickName\Release\ASAN.lib и объект C:\Users\net66\Documents\GitHub\Advanced-SA-NickName\Release\ASAN.exp
+  Создание кода
+  All 1108 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Создание кода завершено
+  ASAN.vcxproj -> C:\Users\net66\Documents\GitHub\Advanced-SA-NickName\Release\ASAN.dll

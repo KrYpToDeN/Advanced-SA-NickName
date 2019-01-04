@@ -1,4 +1,4 @@
-/*  Pawn Abstract Machine (for the Pawn language)
+﻿/*  Pawn Abstract Machine (for the Pawn language)
  *
  *  Copyright (c) ITB CompuPhase, 1997-2005
  *

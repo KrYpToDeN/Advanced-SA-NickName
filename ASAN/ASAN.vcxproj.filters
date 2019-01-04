@@ -30,9 +30,6 @@
     <ClInclude Include="Source\main.h">
       <Filter>Source</Filter>
     </ClInclude>
-    <ClInclude Include="Source\os_info.h">
-      <Filter>Source</Filter>
-    </ClInclude>
     <ClInclude Include="Source\pawn_hook.h">
       <Filter>Source</Filter>
     </ClInclude>
@@ -41,6 +38,18 @@
     </ClInclude>
     <ClInclude Include="Source\INI\INIReader.h">
       <Filter>Source\INI</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\constants.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\structures.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\headers.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\addresses.h">
+      <Filter>Source</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -55,6 +64,18 @@
     </ClCompile>
     <ClCompile Include="Source\INI\ini.cpp">
       <Filter>Source\INI</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\pawn_hook.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\functions.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\addresses.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\structures.cpp">
+      <Filter>Source</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

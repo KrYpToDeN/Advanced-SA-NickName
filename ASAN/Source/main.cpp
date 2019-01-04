@@ -1,6 +1,32 @@
-#define HAVE_STDINT_H
+﻿#define HAVE_STDINT_H
 
 #include "main.h"
+
+#include "addresses.h"
+
+#include "functions.h"
+#include "pawn_hook.h"
+
+#include "INI/INIReader.h"
+
+#include "structures.h"
+
+extern unsigned char ValidNickName_Addresses[MAX_VALID_NICKNAME_ADRESSES];
+extern unsigned char RepeatedNicks_Addresses[MAX_REPEATED_NICKS_ADRESSES];
+extern unsigned char NickLength_Addresses[MAX_NICKNAME_LENGTH_ADRESSES];
+
+extern Plugin_Config_Structure Plugin_Config;
+extern ValidNick_Structure ValidNick_Config;
+extern NickLength_Structure NickLength_Config;
+extern RepeatedNicks_Structure RepeatedNicks_Config;
+extern PlayerConnectionInfo PlayerInfo[MAX_PLAYERS];
+
+typedef void(*logprintf_t)(char* format, ...);
+logprintf_t logprintf;
+
+extern void *pAMXFunctions;
+
+extern AMX_NATIVE_INFO PluginNatives[MAX_PLUGIN_NATIVES];
 
 PLUGIN_EXPORT unsigned int PLUGIN_CALL Supports()
 {
@@ -229,7 +255,7 @@ MaxRepeatedNicks = %d\n\
 		void *ValidNick_Func_ADDR = 0;
 		for (char * address = (char *)MEMORY_START; address < ((char *)MEMORY_START + file_size - MAX_VALID_NICKNAME_ADRESSES); address++)
 		{
-			if (CheckMemmory(address, reinterpret_cast<char*>(ValidNickName_Addresses), MAX_VALID_NICKNAME_ADRESSES))
+			if (CheckMemmory(address, reinterpret_cast<char*>(ValidNickName_Addresses), MAX_VALID_NICKNAME_ADRESSES, true))
 			{
 				ValidNick_Func_ADDR = address; // Our function Address
 				break;
@@ -394,7 +420,7 @@ MaxRepeatedNicks = %d\n\
 
 	for (char * address = (char *)MEMORY_START; address < ((char *)MEMORY_START + file_size - vname_size); address++)
 	{
-		if (CheckMemmory(address, SAMP_VERSION_NAME, vname_size))
+		if (CheckMemmory(address, SAMP_VERSION_NAME, vname_size, true))
 		{
 			*address = 0; // deleting ending of line..
 
@@ -440,17 +466,6 @@ MaxRepeatedNicks = %d\n\
 	ShowCopiratesInfo();
 	return true;
 }
-
-AMX_NATIVE_INFO PluginNatives[] =
-{
-	{ "ASAN_HOOK_ConnectPlayer",		ASAN_HOOK_ConnectPlayer },
-	{ "ASAN_HOOK_DisconnectPlayer",		ASAN_HOOK_DisconnectPlayer },
-	{ "ASAN_HOOK_GetPlayerName",		ASAN_HOOK_GetPlayerName },
-	{ "ASAN_IsValidNickName",			ASAN_IsValidNickName },
-	{ "ASAN_GetMinNickLength",			ASAN_GetMinNickLength },
-	{ "ASAN_GetMaxNickLength",			ASAN_GetMaxNickLength },
-	{0, 0 }
-};
 
 PLUGIN_EXPORT int PLUGIN_CALL AmxLoad(AMX *amx)
 {
