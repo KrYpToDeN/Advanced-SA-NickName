@@ -8,5 +8,7 @@
 #include <string.h> // for strlen function
 #endif
 
+#include "addresses.h"
+
 #include <regex>
 #include "constants.h"

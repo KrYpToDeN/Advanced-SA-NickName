@@ -6,7 +6,6 @@
 
 #include "main.h"
 
-#include "addresses.h"
 #include "structures.h"
 
 extern unsigned char ValidNickName_Addresses[MAX_VALID_NICKNAME_ADRESSES];
@@ -24,7 +23,8 @@ extern logprintf_t logprintf;
 
 size_t CalcDisp(void* lpFirst, void* lpSecond)
 {
-	return reinterpret_cast<char*>(lpSecond) - (reinterpret_cast<char*>(lpFirst) + 5);
+	//return reinterpret_cast<char*>(lpSecond) - (reinterpret_cast<char*>(lpFirst) + 5);
+	return static_cast<char*>(lpSecond) - (static_cast<char*>(lpFirst) + 5);
 }
 
 bool UnblockMemory(void *address, int len)
