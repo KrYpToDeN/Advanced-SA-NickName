@@ -1,11 +1,13 @@
 ﻿OUTFILE = "ASAN.so"
  
-COMPILE_FLAGS= -std=c++11 -m32 -c -O3 -w -DLINUX -I./SDK/amx/
+COMPILE_FLAGS=-m32 -c -O3 -w -idirafter "lib"
+LINK_FLAGS=-m32 -shared -O3 -static-libstdc++
 
 all:
-	gcc $(COMPILE_FLAGS) SDK/amx/*.c
-	g++ $(COMPILE_FLAGS) SDK/*.cpp
-	g++ $(COMPILE_FLAGS) INI/*.cpp
-	g++ $(COMPILE_FLAGS) *.cpp
-	g++ -m32 -O -pthread -unistd -fshort-wchar -shared -o $(OUTFILE) *.o
+	gcc $(COMPILE_FLAGS) lib/SDK/amx/*.h
+	g++ $(COMPILE_FLAGS) -std=c++11 lib/SDK/*.cpp		
+	g++ $(COMPILE_FLAGS) -std=c++11 lib/INI/*.cpp	
+	g++ $(COMPILE_FLAGS) -std=c++11 *.cpp
+	g++ $(LINK_FLAGS) -o $(OUTFILE) *.o
 	rm *.o
+	strip -s $(OUTFILE)

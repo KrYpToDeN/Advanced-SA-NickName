@@ -22,24 +22,24 @@
     <ClInclude Include="Source\constants.h" />
     <ClInclude Include="Source\functions.h" />
     <ClInclude Include="Source\headers.h" />
-    <ClInclude Include="Source\INI\ini.h" />
-    <ClInclude Include="Source\INI\INIReader.h" />
     <ClInclude Include="Source\addresses.h" />
+    <ClInclude Include="Source\lib\INI\ini.h" />
+    <ClInclude Include="Source\lib\INI\INIReader.h" />
+    <ClInclude Include="Source\lib\SDK\amx\amx.h" />
+    <ClInclude Include="Source\lib\SDK\amx\sclinux.h" />
+    <ClInclude Include="Source\lib\SDK\plugincommon.h" />
     <ClInclude Include="Source\main.h" />
     <ClInclude Include="Source\pawn_hook.h" />
-    <ClInclude Include="Source\SDK\amx\amx.h" />
-    <ClInclude Include="Source\SDK\plugin.h" />
-    <ClInclude Include="Source\SDK\plugincommon.h" />
     <ClInclude Include="Source\structures.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\addresses.cpp" />
     <ClCompile Include="Source\functions.cpp" />
-    <ClCompile Include="Source\INI\ini.cpp" />
-    <ClCompile Include="Source\INI\INIReader.cpp" />
+    <ClCompile Include="Source\lib\INI\ini.cpp" />
+    <ClCompile Include="Source\lib\INI\INIReader.cpp" />
+    <ClCompile Include="Source\lib\SDK\amxplugin.cpp" />
     <ClCompile Include="Source\main.cpp" />
     <ClCompile Include="Source\pawn_hook.cpp" />
-    <ClCompile Include="Source\SDK\amxplugin.cpp" />
     <ClCompile Include="Source\structures.cpp" />
   </ItemGroup>
   <ItemGroup>

@@ -4,26 +4,20 @@
     <Filter Include="Source">
       <UniqueIdentifier>{5343def9-1cb4-4b17-893d-ebac67f5edef}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\INI">
-      <UniqueIdentifier>{ab187190-474c-4e27-b0d0-d3f150efa04e}</UniqueIdentifier>
+    <Filter Include="Source\lib">
+      <UniqueIdentifier>{699bdfb0-5042-45f4-8f84-3b8e3d016957}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\SDK">
-      <UniqueIdentifier>{bbce827f-d09b-4600-a1ff-9b9f8a5214ea}</UniqueIdentifier>
+    <Filter Include="Source\lib\SDK">
+      <UniqueIdentifier>{42ca7d4a-168e-4700-b993-96a881d558eb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\SDK\amx">
-      <UniqueIdentifier>{26670d31-cb75-41f0-97aa-af2a877ed9bd}</UniqueIdentifier>
+    <Filter Include="Source\lib\INI">
+      <UniqueIdentifier>{687c7f48-94c1-42a1-a78f-afaea548f1a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\lib\SDK\amx">
+      <UniqueIdentifier>{4bb2e275-b22a-43c4-a716-9f50b10ddda1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source\SDK\amx\amx.h">
-      <Filter>Source\SDK\amx</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\SDK\plugin.h">
-      <Filter>Source\SDK</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\SDK\plugincommon.h">
-      <Filter>Source\SDK</Filter>
-    </ClInclude>
     <ClInclude Include="Source\functions.h">
       <Filter>Source</Filter>
     </ClInclude>
@@ -32,12 +26,6 @@
     </ClInclude>
     <ClInclude Include="Source\pawn_hook.h">
       <Filter>Source</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\INI\ini.h">
-      <Filter>Source\INI</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\INI\INIReader.h">
-      <Filter>Source\INI</Filter>
     </ClInclude>
     <ClInclude Include="Source\constants.h">
       <Filter>Source</Filter>
@@ -51,19 +39,25 @@
     <ClInclude Include="Source\addresses.h">
       <Filter>Source</Filter>
     </ClInclude>
+    <ClInclude Include="Source\lib\INI\ini.h">
+      <Filter>Source\lib\INI</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\lib\INI\INIReader.h">
+      <Filter>Source\lib\INI</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\lib\SDK\plugincommon.h">
+      <Filter>Source\lib\SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\lib\SDK\amx\amx.h">
+      <Filter>Source\lib\SDK\amx</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\lib\SDK\amx\sclinux.h">
+      <Filter>Source\lib\SDK\amx</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source\SDK\amxplugin.cpp">
-      <Filter>Source\SDK</Filter>
-    </ClCompile>
     <ClCompile Include="Source\main.cpp">
       <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\INI\INIReader.cpp">
-      <Filter>Source\INI</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\INI\ini.cpp">
-      <Filter>Source\INI</Filter>
     </ClCompile>
     <ClCompile Include="Source\pawn_hook.cpp">
       <Filter>Source</Filter>
@@ -76,6 +70,15 @@
     </ClCompile>
     <ClCompile Include="Source\structures.cpp">
       <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\lib\INI\ini.cpp">
+      <Filter>Source\lib\INI</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\lib\INI\INIReader.cpp">
+      <Filter>Source\lib\INI</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\lib\SDK\amxplugin.cpp">
+      <Filter>Source\lib\SDK</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

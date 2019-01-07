@@ -3,7 +3,10 @@
 #include "headers.h"
 #include "constants.h"
 
-#include "SDK/plugin.h"
+#define HAVE_STDINT_H
+
+#include "lib/SDK/amx/amx.h"
+#include "lib/SDK/plugincommon.h"
 
 PLUGIN_EXPORT unsigned int PLUGIN_CALL Supports();
 PLUGIN_EXPORT bool PLUGIN_CALL Load(void **ppData);

@@ -7,7 +7,7 @@
 #include "functions.h"
 #include "pawn_hook.h"
 
-#include "INI/INIReader.h"
+#include "lib/INI/INIReader.h"
 
 #include "structures.h"
 
