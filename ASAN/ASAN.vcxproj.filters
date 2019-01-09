@@ -1,92 +1,98 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source">
+    <Filter Include="src">
       <UniqueIdentifier>{5343def9-1cb4-4b17-893d-ebac67f5edef}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\lib">
-      <UniqueIdentifier>{699bdfb0-5042-45f4-8f84-3b8e3d016957}</UniqueIdentifier>
+    <Filter Include="bin">
+      <UniqueIdentifier>{d6782abf-1225-442f-99ea-ac3c04af4811}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\lib\SDK">
-      <UniqueIdentifier>{42ca7d4a-168e-4700-b993-96a881d558eb}</UniqueIdentifier>
+    <Filter Include="src\lib">
+      <UniqueIdentifier>{1ce1cd5b-bca0-4cf9-b3bb-76902eaa9082}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\lib\INI">
-      <UniqueIdentifier>{687c7f48-94c1-42a1-a78f-afaea548f1a9}</UniqueIdentifier>
+    <Filter Include="src\lib\INI">
+      <UniqueIdentifier>{91c2ce8d-63a9-4bee-9c7c-ad4b108c4e81}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\lib\SDK\amx">
-      <UniqueIdentifier>{4bb2e275-b22a-43c4-a716-9f50b10ddda1}</UniqueIdentifier>
+    <Filter Include="src\lib\SDK">
+      <UniqueIdentifier>{600c5bb4-0878-4a09-83e9-8d022d8d72ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\lib\SDK\amx">
+      <UniqueIdentifier>{6a96e6a0-79ab-43be-b25f-4d828c4c6a43}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="bin\plugins">
+      <UniqueIdentifier>{3a421705-76a5-46f9-9192-4fc9dfc2efcc}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source\functions.h">
-      <Filter>Source</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\main.h">
-      <Filter>Source</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\pawn_hook.h">
-      <Filter>Source</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\constants.h">
-      <Filter>Source</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\structures.h">
-      <Filter>Source</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\headers.h">
-      <Filter>Source</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\addresses.h">
-      <Filter>Source</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\lib\INI\ini.h">
-      <Filter>Source\lib\INI</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\lib\INI\INIReader.h">
-      <Filter>Source\lib\INI</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\lib\SDK\plugincommon.h">
-      <Filter>Source\lib\SDK</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\lib\SDK\amx\amx.h">
-      <Filter>Source\lib\SDK\amx</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\lib\SDK\amx\sclinux.h">
-      <Filter>Source\lib\SDK\amx</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Source\main.cpp">
-      <Filter>Source</Filter>
+    <ClCompile Include="src\lib\INI\ini.cpp">
+      <Filter>src\lib\INI</Filter>
     </ClCompile>
-    <ClCompile Include="Source\pawn_hook.cpp">
-      <Filter>Source</Filter>
+    <ClCompile Include="src\lib\INI\INIReader.cpp">
+      <Filter>src\lib\INI</Filter>
     </ClCompile>
-    <ClCompile Include="Source\functions.cpp">
-      <Filter>Source</Filter>
+    <ClCompile Include="src\lib\SDK\amxplugin.cpp">
+      <Filter>src\lib\SDK</Filter>
     </ClCompile>
-    <ClCompile Include="Source\addresses.cpp">
-      <Filter>Source</Filter>
+    <ClCompile Include="src\addresses.cpp">
+      <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="Source\structures.cpp">
-      <Filter>Source</Filter>
+    <ClCompile Include="src\functions.cpp">
+      <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="Source\lib\INI\ini.cpp">
-      <Filter>Source\lib\INI</Filter>
+    <ClCompile Include="src\main.cpp">
+      <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="Source\lib\INI\INIReader.cpp">
-      <Filter>Source\lib\INI</Filter>
+    <ClCompile Include="src\pawn_hook.cpp">
+      <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="Source\lib\SDK\amxplugin.cpp">
-      <Filter>Source\lib\SDK</Filter>
+    <ClCompile Include="src\structures.cpp">
+      <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Source\ASAN.def">
-      <Filter>Source</Filter>
+    <ClInclude Include="src\lib\INI\ini.h">
+      <Filter>src\lib\INI</Filter>
+    </ClInclude>
+    <ClInclude Include="src\lib\INI\INIReader.h">
+      <Filter>src\lib\INI</Filter>
+    </ClInclude>
+    <ClInclude Include="src\lib\SDK\plugincommon.h">
+      <Filter>src\lib\SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="src\lib\SDK\amx\amx.h">
+      <Filter>src\lib\SDK\amx</Filter>
+    </ClInclude>
+    <ClInclude Include="src\lib\SDK\amx\sclinux.h">
+      <Filter>src\lib\SDK\amx</Filter>
+    </ClInclude>
+    <ClInclude Include="src\addresses.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\constants.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\functions.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\headers.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\main.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\pawn_hook.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\structures.h">
+      <Filter>src</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\ASAN.def">
+      <Filter>src</Filter>
     </None>
-    <None Include="Source\makefile">
-      <Filter>Source</Filter>
+    <None Include="src\makefile">
+      <Filter>src</Filter>
     </None>
   </ItemGroup>
 </Project>
