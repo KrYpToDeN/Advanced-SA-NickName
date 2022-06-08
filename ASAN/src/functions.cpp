@@ -99,13 +99,35 @@ bool IsValidReplaceSpacesRules(char name[]) // Cheking first and last symbols in
 	return true;
 }
 
+// String is converted to a multi-byte string
+std::wstring s2ws(const std::string& s)
+{
+	// Temporarily configure the locale
+	// The Chinese character set for Windows is GBK
+	setlocale(LC_ALL, "zh_CN.GBK");
+	const char* _Source = s.c_str();
+	size_t _Dsize = s.size() + 1;
+	wchar_t* _Dest = new wchar_t[_Dsize];
+	wmemset(_Dest, 0, _Dsize);
+	mbstowcs(_Dest, _Source, _Dsize);
+	std::wstring result = _Dest;
+	delete[]_Dest;
+	// Restoring the Default locale
+	setlocale(LC_ALL, "C");
+	return result;
+}
+
 int HOOK_ValidNickName(char *name) // Thanks to [EC]Zero for helping with this hook
 {
 	int name_length = strlen(name);
 	if (name_length < NickLength_Config.MinNickLength || name_length > NickLength_Config.MaxNickLength)
 		return 1; // DON'T Allow Connection
 
-	if (std::regex_match(name, ValidNick_Config.RegexTemplate))
+	// Attempts to convert a character to a multi-byte string
+	std::string tmpName = name;
+	std::wstring multibyteName = s2ws(tmpName);
+	
+	if (std::regex_match(multibyteName, ValidNick_Config.RegexTemplate))
 	{
 		if (IsAllowdedToReplaceUnderscoreSymbols())
 		{
