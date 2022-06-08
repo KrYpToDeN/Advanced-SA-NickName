@@ -207,10 +207,12 @@ MaxRepeatedNicks = %d\n\
 		Plugin_Config.Language = reader.GetInteger("ASAN_Plugin_Config", "Language", ASAN_DEFAULT_MAX_PLAYERS);
 
 		// ASAN_ValidNick_Settings
-		char RegexText[512];
+		std::string RegText = reader.Get("ASAN_ValidNick_Settings", "RegexTemplate", ASAN_DEFAULT_REGEX_TEMPLATE).c_str();
+		std::wstring multibyteRegText = s2ws(RegText);
+		
 		ValidNick_Config.EnableValidNickHOOK = reader.GetInteger("ASAN_ValidNick_Settings", "EnableValidNickHOOK", ASAN_DEFAULT_ENABLE_VALID_NICK_HOOK);
-		sprintf(RegexText, reader.Get("ASAN_ValidNick_Settings", "RegexTemplate", ASAN_DEFAULT_REGEX_TEMPLATE).c_str());
-		std::regex temp_regex_template(RegexText);
+		std::wregex temp_regex_template(multibyteRegText);
+		
 		ValidNick_Config.RegexTemplate = temp_regex_template;
 		ValidNick_Config.MaxAllowdedSpaces = reader.GetInteger("ASAN_ValidNick_Settings", "MaxAllowdedSpaces", ASAN_DEFAULT_MAX_ALLOWDED_SPACES);
 
