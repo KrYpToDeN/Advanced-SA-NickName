@@ -71,8 +71,12 @@ cell AMX_NATIVE_CALL ASAN_IsValidNickName(AMX *amx, cell *params)
 		return false;
 
 	int name_strlen = strlen(name);
-
-	if (!std::regex_match(name, ValidNick_Config.RegexTemplate) || name_strlen < NickLength_Config.MinNickLength || name_strlen > NickLength_Config.MaxNickLength || IsMaxRepeatedNicksError(name) || IsIgnoreRepeatedNicksCaseError(name))
+	
+	// Attempts to convert a character to a multi-byte string
+	std::string tmpName = name;
+	std::wstring multibyteName = s2ws(tmpName);
+	
+	if (!std::regex_match(multibyteName, ValidNick_Config.RegexTemplate) || name_strlen < NickLength_Config.MinNickLength || name_strlen > NickLength_Config.MaxNickLength || IsMaxRepeatedNicksError(name) || IsIgnoreRepeatedNicksCaseError(name))
 		return false;
 
 	if (IsAllowdedToReplaceUnderscoreSymbols() && !IsValidReplaceSpacesRules(name))
