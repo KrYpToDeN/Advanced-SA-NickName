@@ -81,7 +81,7 @@ PLUGIN_EXPORT bool PLUGIN_CALL Load(void **ppData)
 
 		// ValidNick_Config
 		ValidNick_Config.EnableValidNickHOOK			= ASAN_DEFAULT_ENABLE_VALID_NICK_HOOK;
-		std::regex temp_regex_template(ASAN_DEFAULT_REGEX_TEMPLATE);
+		std::wregex temp_regex_template(s2ws(ASAN_DEFAULT_REGEX_TEMPLATE));
 		ValidNick_Config.RegexTemplate					= temp_regex_template;
 		ValidNick_Config.MaxAllowdedSpaces				= ASAN_DEFAULT_MAX_ALLOWDED_SPACES;
 
