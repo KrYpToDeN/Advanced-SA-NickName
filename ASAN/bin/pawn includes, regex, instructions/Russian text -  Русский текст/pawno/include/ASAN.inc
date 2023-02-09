@@ -74,6 +74,10 @@ native ASAN_HOOK_DisconnectPlayer(playerid, reason);
 
 public OnPlayerConnect(playerid)
 {
+	// Исправляет несовместимость (краш) c FCNPC
+	if (IsPlayerNPC(playerid))
+		return 1;
+
 	new name[INCLUDE_ASAN_MAX_PLAYER_NAME + 1];
 	GetPlayerName(playerid, name, sizeof(name));
 	ASAN_HOOK_ConnectPlayer(playerid, name);
